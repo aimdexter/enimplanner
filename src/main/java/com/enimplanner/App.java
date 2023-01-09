@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 
 /**
  * JavaFX App
@@ -32,6 +35,18 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        Connection c = null;
+        try {
+        Class.forName("org.postgresql.Driver");
+        c = DriverManager
+        .getConnection("jdbc:postgresql://localhost:49153/studyenim","postgres", "postgrespw");
+        System.out.println("Opened database successfully");
+
+        c.close();
+        } catch ( Exception e ) {
+        System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+        System.exit(0);
+        }
         launch();
     }
 
