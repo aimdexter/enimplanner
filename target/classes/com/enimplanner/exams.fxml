@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.enimplanner.ExamsController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="258.0" style="-fx-background-color: #0c39ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="-3.0" prefHeight="576.0" prefWidth="263.0" style="-fx-background-color: #0c39ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -35,7 +35,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" text="Profile" textFill="#e7e5e5">
+            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" text="Profile" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -60,7 +60,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" text="Matières">
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" text="Matières">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -79,26 +79,22 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" text="Examens">
+            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #fff;" text="Examens">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/exams.png" />
+                        <Image url="@images/Examsblue.png" />
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets left="50.0" />
                </padding>
-               <stylesheets>
-                  <URL value="@style.css" />
-                  <URL value="@styles/Exams.css" />
-               </stylesheets>
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" text="ToDos">
+            <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" text="ToDos">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -149,9 +145,8 @@
                      <stylesheets>
                         <URL value="@styles/Exams.css" />
                         <URL value="@styles/Exams.css" />
-                     </stylesheets>
-                  </TextField>
-                  <Label layoutX="57.0" layoutY="25.0" text="Todos">
+                     </stylesheets></TextField>
+                  <Label layoutX="57.0" layoutY="25.0" text="Examens">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -165,7 +160,7 @@
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label text="Total Todos" />
+                              <Label text="Total Examens" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -175,7 +170,7 @@
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label text="Todos terminées" />
+                              <Label text="Examens Passés" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -185,15 +180,15 @@
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label text="Todos Restantes" />
+                              <Label text="Examens Restants" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="590.0" spacing="80.0" style="-fx-background-color: #fff;">
+                  <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #fff;">
                      <children>
-                        <Label text="Todos">
+                        <Label text="Examen">
                            <HBox.margin>
                               <Insets left="50.0" />
                            </HBox.margin>
@@ -203,7 +198,7 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label text="Date">
+                        <Label text=" Date">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -226,27 +221,7 @@
                   </ScrollPane>
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/recherche.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="btnOverview1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="695.0" layoutY="186.0" minWidth="30.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="27.0" prefWidth="30.0" textAlignment="CENTER" textFill="#e7e5e5">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <stylesheets>
-                        <URL value="@style.css" />
-                        <URL value="@styles/Exams.css" />
-                     </stylesheets>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="707.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/addwhite.png" />
+                        <Image url="@../images/icons8_Search_52px.png" />
                      </image>
                   </ImageView>
                </children>
