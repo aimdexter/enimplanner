@@ -33,6 +33,7 @@ public class LoginController implements Initializable {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+    public static String loggedInUserId;
 
     public LoginController() {
         connection = ConnectionUtil.connectdb();
@@ -53,6 +54,7 @@ public class LoginController implements Initializable {
         if(!resultSet.next()){
             infoBox("Enter Correct Email and Password", "Failed", null);
         }else{
+            loggedInUserId =  resultSet.getString("id_etudiant");
             Node source = (Node) event.getSource();
             dialogStage = (Stage) source.getScene().getWindow();
             dialogStage.close();
