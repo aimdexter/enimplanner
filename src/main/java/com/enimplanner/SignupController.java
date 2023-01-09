@@ -1,11 +1,123 @@
 package com.enimplanner;
 
 import java.io.IOException;
-import javafx.fxml.FXML;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ResourceBundle;
 
-public class SignupController {
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+public class SignupController implements Initializable{
+
     @FXML
-    private void Home() throws IOException {
-        App.setRoot("home");
+    private Button home;
+
+    @FXML
+    private TextField textEmail;
+
+    @FXML
+    private TextField textNom;
+
+    @FXML
+    private TextField textOption;
+
+    @FXML
+    private PasswordField textPassword;
+
+    @FXML
+    private TextField textPrenom;
+
+
+
+    Stage dialogStage = new Stage();
+    Scene scene;
+    
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+
+    public SignupController() {
+        connection = ConnectionUtil.connectdb();
+    }
+
+    @FXML
+    public void Home(ActionEvent event) throws IOException {
+
+        Window owner = home.getScene().getWindow();
+
+        String nom = textNom.getText().toString();
+        String prenom = textPrenom.getText().toString();
+        String option = textOption.getText().toString();
+        String email = textEmail.getText().toString();
+        String password = textPassword.getText().toString();
+     
+        String sql = "INSERT INTO etudiant (nom, prenom, niveau, email, password) VALUES (?, ?, ? , ?, ?)";
+
+        if (nom.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter your name");
+            return;
+        }
+
+        if (emailIdField.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter your email id");
+            return;
+        }
+        if (passwordField.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+                "Please enter a password");
+            return;
+        }
+
+        Node source = (Node) event.getSource();
+            dialogStage = (Stage) source.getScene().getWindow();
+            dialogStage.close();
+            
+            Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+            dialogStage.show();
+
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, nom);
+            preparedStatement.setString(2, prenom);
+            preparedStatement.setString(3, option);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, password);
+            resultSet = preparedStatement.executeQuery();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        // TODO Auto-generated method stub
     }
 }
