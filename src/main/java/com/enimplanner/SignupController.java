@@ -63,9 +63,9 @@ public class SignupController implements Initializable{
      
         String sql = "INSERT INTO etudiant (nom, prenom, niveau, email, password) VALUES (?, ?, ? , ?, ?)";
 
-        if (textNom.getText().isEmpty()) {
+        if (textNom.getText().isEmpty() || textPrenom.getText().isEmpty() || textOption.getText().isEmpty() || textOption.getText().isEmpty() || textEmail.getText().isEmpty() || textPassword.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your name");
+            "Veuillez renseigner tous les champs");
             return;
         }
 
@@ -73,29 +73,36 @@ public class SignupController implements Initializable{
         String prenom = textPrenom.getText().toString();
         String option = textOption.getText().toString();
         String email = textEmail.getText().toString();
-        String password = textPassword.getText().toString();
+        String password = textPassword.getText().toString();   
+        
+        try {
+            
+            preparedStatement = connection.prepareStatement(sql);
 
-        Node source = (Node) event.getSource();
+            preparedStatement.setString(1, nom);
+            preparedStatement.setString(2, prenom);
+            preparedStatement.setString(3, option);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, password);
+
+            preparedStatement.executeUpdate();
+            
+            Node source = (Node) event.getSource();
             dialogStage = (Stage) source.getScene().getWindow();
             dialogStage.close();
             
             Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
-            dialogStage.show();
+            dialogStage.show();            
 
-
-        try {
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, nom);
-            preparedStatement.setString(2, prenom);
-            preparedStatement.setString(3, option);
-            preparedStatement.setString(4, email);
-            preparedStatement.setString(5, password);
-            resultSet = preparedStatement.executeQuery();
         } catch (Exception e) {
-            // TODO: handle exception
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+            "Cet Email existe déjà");
+            return;
         }
+
+        
     }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

@@ -61,11 +61,10 @@ public class LoginController implements Initializable {
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
             dialogStage.show();
-            connection.close();
         }
          
         }catch(Exception e){
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
