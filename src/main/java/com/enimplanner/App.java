@@ -11,7 +11,7 @@ import java.io.IOException;
 
 
 /**
- * JavaFX App
+ * JavaFX App for running all the app
  */
 public class App extends Application {
     @Override
