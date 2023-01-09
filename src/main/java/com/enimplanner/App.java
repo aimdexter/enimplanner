@@ -7,46 +7,25 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 
 
 /**
  * JavaFX App
  */
 public class App extends Application {
-
-    private static Scene scene;
-
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"));
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
-
     public static void main(String[] args) {
-        Connection c = null;
-            try {
-                Class.forName("org.postgresql.Driver");
-                c = DriverManager
-                .getConnection("jdbc:postgresql://localhost:49153/studyenim","postgres", "postgrespw");
-                System.out.println("Opened database successfully");
-                c.close();
-            } catch ( Exception e ) {
-                System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-                System.exit(0);
-            }
         launch();
+    }
+    public static void setRoot(String string) {
     }
 
 }
