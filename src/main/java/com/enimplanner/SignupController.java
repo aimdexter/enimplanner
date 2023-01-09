@@ -59,30 +59,21 @@ public class SignupController implements Initializable{
 
         Window owner = home.getScene().getWindow();
 
-        String nom = textNom.getText().toString();
-        String prenom = textPrenom.getText().toString();
-        String option = textOption.getText().toString();
-        String email = textEmail.getText().toString();
-        String password = textPassword.getText().toString();
+        
      
         String sql = "INSERT INTO etudiant (nom, prenom, niveau, email, password) VALUES (?, ?, ? , ?, ?)";
 
-        if (nom.isEmpty()) {
+        if (textNom.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                 "Please enter your name");
             return;
         }
 
-        if (emailIdField.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter your email id");
-            return;
-        }
-        if (passwordField.getText().isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                "Please enter a password");
-            return;
-        }
+        String nom = textNom.getText().toString();
+        String prenom = textPrenom.getText().toString();
+        String option = textOption.getText().toString();
+        String email = textEmail.getText().toString();
+        String password = textPassword.getText().toString();
 
         Node source = (Node) event.getSource();
             dialogStage = (Stage) source.getScene().getWindow();
