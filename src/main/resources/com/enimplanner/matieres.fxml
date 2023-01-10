@@ -141,7 +141,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label fx:id="txttotalmat" text="12" textFill="#2a73ff">
+                              <Label fx:id="textTotalMat" text="12" textFill="#2a73ff">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
