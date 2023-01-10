@@ -126,7 +126,7 @@
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOverview" prefHeight="576.0" prefWidth="800.0" style="-fx-background-color: #fff;">
                <children>
-                  <TextField layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="Recherche" style="-fx-background-color: #fff; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
+                  <TextField fx:id="Recherche" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="Recherche" style="-fx-background-color: #fff; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
                      <stylesheets>
                         <URL value="@styles/Exams.css" />
                         <URL value="@styles/Exams.css" />
@@ -137,11 +137,11 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="72.0" prefHeight="92.0" prefWidth="661.0" spacing="50.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="42.0" layoutY="72.0" prefHeight="92.0" prefWidth="661.0" spacing="50.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="12" textFill="#2a73ff">
+                              <Label fx:id="txttotalmat" text="12" textFill="#2a73ff">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -169,35 +169,32 @@
                               <Label text="Tronc Commun" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="178.0" prefHeight="42.0" prefWidth="712.0" spacing="80.0" style="-fx-background-color: #fff;">
+                  <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="178.0" prefHeight="42.0" prefWidth="737.0" spacing="120.0" style="-fx-background-color: #fff;">
                      <children>
-                        <Label text="Matière">
+                        <Label prefHeight="17.0" prefWidth="70.0" text="Matière">
                            <HBox.margin>
-                              <Insets left="50.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="Coefficient">
+                        <Label prefHeight="17.0" prefWidth="90.0" text="Coefficient">
                            <HBox.margin>
-                              <Insets />
+                              <Insets right="60.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="Priorité">
+                        <Label prefHeight="17.0" prefWidth="51.0" text="Statut">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="5.0" right="15.0" />
                            </HBox.margin>
                         </Label>
-                        <Label text="Statut">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnadd" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/ajouter.png" />
                            </image>
+                           <HBox.margin>
+                              <Insets left="30.0" right="60.0" />
+                           </HBox.margin>
                         </ImageView>
                      </children>
                   </HBox>
@@ -211,6 +208,53 @@
                               <URL value="@styles/Exams.css" />
                               <URL value="@styles/Exams.css" />
                            </stylesheets>
+                           <children>
+                              <HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="714.0" spacing="150.0" style="-fx-background-color: #fff; -fx-background-radius: 5; -fx-background-insets: 0;">
+                                 <children>
+                                    <Label fx:id="textmatiere" text="KeepToo" textFill="#b7c3d7">
+                                       <HBox.margin>
+                                          <Insets left="15.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="textcoefficient" text="JFK" textFill="#b7c3d7">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Button fx:id="textSstatut" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@styles/Matieres.css" text="active">
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <HBox fx:id="btnaddmodify" alignment="CENTER" prefHeight="53.0" prefWidth="54.0" spacing="10.0">
+                                       <children>
+                                          <ImageView fx:id="btnmodif" fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/modifypng.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="btndel" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@images/delete.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </HBox>
+                                 </children>
+                                 <effect>
+                                    <DropShadow blurType="GAUSSIAN" height="5.0" radius="2.0" width="5.0" />
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
                         </VBox>
                      </content>
                      <stylesheets>
