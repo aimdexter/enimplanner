@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -209,7 +210,7 @@
                               <URL value="@styles/Exams.css" />
                            </stylesheets>
                            <children>
-                              <HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="714.0" spacing="150.0" style="-fx-background-color: #fff; -fx-background-radius: 5; -fx-background-insets: 0;">
+                              <HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="735.0" spacing="150.0" style="-fx-background-color: #fff; -fx-background-radius: 5; -fx-background-insets: 0;">
                                  <children>
                                     <Label fx:id="textmatiere" text="KeepToo" textFill="#b7c3d7">
                                        <HBox.margin>
@@ -254,6 +255,7 @@
                                     <Insets />
                                  </VBox.margin>
                               </HBox>
+                              <ListView fx:id="textlistMat" prefHeight="282.0" prefWidth="735.0" />
                            </children>
                         </VBox>
                      </content>
