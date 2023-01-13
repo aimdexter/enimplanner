@@ -91,7 +91,7 @@ public class SignupController implements Initializable{
             dialogStage = (Stage) source.getScene().getWindow();
             dialogStage.close();
             
-            Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
             dialogStage.show();            

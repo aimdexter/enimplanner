@@ -7,5 +7,5 @@ module com.enimplanner {
     exports com.enimplanner;
     requires transitive java.sql;
     requires MaterialFX;
-
+    requires com.jfoenix;
 }
