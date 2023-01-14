@@ -79,18 +79,6 @@ public class ExamsController implements Initializable {
         private Button btnupdate;
     
         @FXML
-        private Pane pnlCustomer;
-    
-        @FXML
-        private Pane pnlMenus;
-    
-        @FXML
-        private Pane pnlOrders;
-    
-        @FXML
-        private Pane pnlOverview;
-    
-        @FXML
         private DatePicker textDateExam;
     
         @FXML
@@ -106,31 +94,7 @@ public class ExamsController implements Initializable {
         private Label textUsername;
     
         @FXML
-        private Label textUsername11;
-    
-        @FXML
         private TableView textlistExam;
-    
-        @FXML
-        void addAction(ActionEvent event) {
-    
-        }
-    
-        @FXML
-        void btnSearch(ActionEvent event) {
-    
-        }
-    
-        @FXML
-        void deleteAction(ActionEvent event) {
-    
-        }
-    
-        @FXML
-        void updateAction(ActionEvent event) {
-    
-        }
-    
     
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -146,8 +110,8 @@ public class ExamsController implements Initializable {
     String sql = "SELECT * FROM etudiant WHERE id_etudiant = \'"+loggedInUserId+"';";
     String countExams = "SELECT COUNT(*) FROM exam where id_etudiant = \'"+loggedInUserId+"';";
     String listexams = "SELECT id_exam,nom_exam,date_exam , id_etudiant FROM exam where id_etudiant = \'"+loggedInUserId+"';";
-    String deltitem = "DELETE FROM matiere WHERE id_matiere = ?";
-    String add = "INSERT INTO matiere (nom_matiere,date_matiere,coefficient , id_etudiant) VALUES (?,?,?,"+loggedInUserId+");";
+    String deltitem = "DELETE FROM exam WHERE id_exam = ?";
+    String add = "INSERT INTO exam (nom_exam, date_exam, id_etudiant) VALUES (?,?,"+loggedInUserId+");";
     String update = "UPDATE matiere SET nom_matiere = ?, date_matiere = ? , coefficient = ? WHERE id_matiere = ? AND id_etudiant = \'"+loggedInUserId+"';";
     private Window owner;
 
@@ -189,8 +153,6 @@ public class ExamsController implements Initializable {
         }
 
     };
-
-
 
      //only fetch columns
      private void fetColumnList() {
@@ -241,5 +203,68 @@ public class ExamsController implements Initializable {
             System.err.println(ex.getMessage());
         }
     }
+
+
+    @FXML
+    private void addAction(ActionEvent event) throws IOException {
+        if (textNomExam.getText().isEmpty() || textDateExam.getValue() == null) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veuillez renseigner tous les champs");
+            return;
+        }
+        try {
+            preparedStatement = connection.prepareStatement(add);
+            preparedStatement.setString(1, textNomExam.getText().toString());
+            preparedStatement.setDate(2, Date.valueOf(textDateExam.getValue()));
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        afficherValeurs();
+        fetRowList();
+    };
+
+
+    @FXML
+    void btnSearch(ActionEvent event) {
+
+    }
+
+    //Delete rows and data from the list by id_matiere
+    @FXML
+    private void deleteAction(ActionEvent event) {
+        String id_mexam = textExam.getText().toString();
+        try {
+            preparedStatement = connection.prepareStatement(deltitem);
+            if (id_mexam.matches("^[0-9]*$") || id_mexam == "") {
+                preparedStatement.setInt(1, Integer.parseInt(textExam.getText()));
+            }
+            else{
+                showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veillez enter un chiffre");
+            }
+
+            preparedStatement.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        afficherValeurs();
+        fetRowList();
+    }
+
+
+    @FXML
+    void updateAction(ActionEvent event) {
+
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
 
 }
