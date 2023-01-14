@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -169,6 +170,8 @@
                               <Label text="Tronc Commun" />
                            </children>
                         </VBox>
+                        <TextField fx:id="textSstatut" prefHeight="26.0" prefWidth="100.0" text="id matiere" />
+                        <Button fx:id="btndel" mnemonicParsing="false" onAction="#deleteAction" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: red;" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Supprimer" />
                      </children>
                   </HBox>
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
@@ -176,9 +179,10 @@
                         <Image url="@images/recherche.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btndel" layoutX="218.0" layoutY="190.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="27.0" prefWidth="82.0" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Supprimer" />
-                  <TextField fx:id="textSstatut" layoutX="61.0" layoutY="190.0" prefHeight="26.0" prefWidth="100.0" />
                   <TableView fx:id="textlistMat" layoutX="53.0" layoutY="248.0" prefHeight="321.0" prefWidth="713.0" />
+                  <Button fx:id="btnadd" layoutX="621.0" layoutY="178.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="82.0" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Ajouter" />
+                  <TextField fx:id="textNomMatiere" layoutX="53.0" layoutY="178.0" prefHeight="26.0" prefWidth="329.0" />
+                  <DatePicker fx:id="textDateMatiere" layoutX="399.0" layoutY="180.0" prefHeight="25.0" prefWidth="191.0" />
                </children>
             </Pane>
          </children>

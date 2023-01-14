@@ -2,12 +2,15 @@ package com.enimplanner;
 
 import static com.enimplanner.LoginController.loggedInUserId;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
@@ -22,15 +25,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 public class MatieresController implements Initializable {
@@ -45,9 +55,17 @@ public class MatieresController implements Initializable {
     private Button  btndel;
     @FXML
     private TextField textSstatut;
+    @FXML
+    private Button btnadd;
+    @FXML
+    private DatePicker textDateMatiere;
+    @FXML
+    private TextField textNomMatiere;
+
 
     Connection connection = null;
-    private Statement preparedStatement = null;
+    PreparedStatement preparedStatement = null;
+    Statement Statement = null;
     ResultSet resultSet = null;
     ResultSet resultSetMat = null;
     ObservableList<String> items = FXCollections.observableArrayList();
@@ -57,6 +75,9 @@ public class MatieresController implements Initializable {
     String countMatiere = "SELECT COUNT(*) FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
     String listmat = "SELECT * FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
     String deltitem = "DELETE FROM matiere WHERE id_matiere = ?";
+    String add = "INSERT INTO matiere (nom_matiere,date_matiere, id_etudiant) VALUES (?,?,"+loggedInUserId+");";
+    private Window owner;
+
 
 
     public MatieresController() {
@@ -125,8 +146,6 @@ public class MatieresController implements Initializable {
     //Delete rows and data from the list by id_matiere
     @FXML
     private void deleteAction(ActionEvent event) {
-        PreparedStatement preparedStatement = null;
-
         try {
             preparedStatement = connection.prepareStatement(deltitem);
             preparedStatement.setInt(1, Integer.parseInt(textSstatut.getText()));
@@ -135,14 +154,15 @@ public class MatieresController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        afficherValeurs();
         fetRowList();
     }
 
     //Afficher les vdonnees de l utilisteur
     private void afficherValeurs() {
         try {
-            preparedStatement = connection.createStatement();
-            resultSet = preparedStatement.executeQuery(sql);
+            Statement = connection.createStatement();
+            resultSet = Statement.executeQuery(sql);
             if(resultSet.next()){
                 String nom = resultSet.getString("nom").toUpperCase();
                 String prenom = resultSet.getString("prenom").toUpperCase();
@@ -154,8 +174,8 @@ public class MatieresController implements Initializable {
         }
 
         try {
-            preparedStatement = connection.createStatement();
-            resultSet = preparedStatement.executeQuery(countMatiere);
+            Statement = connection.createStatement();
+            resultSet = Statement.executeQuery(countMatiere);
             if(resultSet.next()){
                 int countmat = resultSet.getInt("count");
                 textTotalMat.setText(""+countmat);
@@ -165,4 +185,40 @@ public class MatieresController implements Initializable {
         }
 
     };
+
+
+    @FXML
+    private void addAction(ActionEvent event) throws IOException {
+        if (textNomMatiere.getText().isEmpty() || textDateMatiere.getValue() == null) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+            "Veuillez renseigner tous les champs");
+            return;
+        }
+
+        String NomMatiere = textNomMatiere.getText().toString();
+        LocalDate DateMatiere = textDateMatiere.getValue();
+        System.out.println(DateMatiere);
+        
+        try {
+            preparedStatement = connection.prepareStatement(add);
+            preparedStatement.setString(1, NomMatiere);
+            preparedStatement.setDate(2, Date.valueOf(DateMatiere));
+            preparedStatement.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        afficherValeurs();
+        fetRowList();
+    };
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
 }
