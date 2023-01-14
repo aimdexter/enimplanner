@@ -112,7 +112,7 @@ public class ExamsController implements Initializable {
     String listexams = "SELECT id_exam,nom_exam,date_exam , id_etudiant FROM exam where id_etudiant = \'"+loggedInUserId+"';";
     String deltitem = "DELETE FROM exam WHERE id_exam = ?";
     String add = "INSERT INTO exam (nom_exam, date_exam, id_etudiant) VALUES (?,?,"+loggedInUserId+");";
-    String update = "UPDATE matiere SET nom_matiere = ?, date_matiere = ? , coefficient = ? WHERE id_matiere = ? AND id_etudiant = \'"+loggedInUserId+"';";
+    String update = "UPDATE exam SET nom_exam = ?, date_exam = ? WHERE id_exam = ? AND id_etudiant = \'"+loggedInUserId+"';";
     private Window owner;
 
     public ExamsController() {
@@ -254,8 +254,33 @@ public class ExamsController implements Initializable {
 
     @FXML
     void updateAction(ActionEvent event) {
+        String id_exam = textExam.getText().toString();
 
-    }
+        if (textNomExam.getText().isEmpty() || textDateExam.getValue() == null || textExam.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veuillez renseigner tous les champs");
+            return;
+        }
+       
+        
+        try {
+            preparedStatement = connection.prepareStatement(update);
+            preparedStatement.setString(1, textNomExam.getText().toString());
+            preparedStatement.setDate(2, Date.valueOf(textDateExam.getValue()));
+
+            if (id_exam.matches("^[0-9]*$")) {
+                preparedStatement.setInt(3, Integer.parseInt(id_exam));
+            }
+            else{
+                showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Id examen doit etre un chiffre");
+            }
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        afficherValeurs();
+        fetRowList();
+    };
+    
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);

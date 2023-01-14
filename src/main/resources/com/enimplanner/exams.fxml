@@ -154,7 +154,7 @@
                         <Button fx:id="btnupdate" layoutX="629.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: green;" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Modifier" />
                      </children>
                   </Group>
-                  <Label layoutX="53.0" layoutY="157.0" prefHeight="46.0" prefWidth="183.0" text="Total Examins :">
+                  <Label layoutX="53.0" layoutY="157.0" prefHeight="46.0" prefWidth="183.0" text="Total Examens :">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
