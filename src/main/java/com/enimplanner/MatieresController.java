@@ -77,6 +77,7 @@ public class MatieresController implements Initializable {
     String listmat = "SELECT id_matiere,nom_matiere,date_matiere , id_etudiant FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
     String deltitem = "DELETE FROM matiere WHERE id_matiere = ?";
     String add = "INSERT INTO matiere (nom_matiere,date_matiere,coefficient , id_etudiant) VALUES (?,?,?,"+loggedInUserId+");";
+    String update = "UPDATE matiere SET nom_matiere = ?, date_matiere = ? , coefficient = ? WHERE id_matiere = ? AND id_etudiant = \'"+loggedInUserId+"';";
     private Window owner;
 
 
@@ -110,7 +111,6 @@ public class MatieresController implements Initializable {
                     }
                 });
                 textlistMat.setEditable(true);
-
                 textlistMat.getColumns().removeAll(col);
                 textlistMat.getColumns().addAll(col);
 
@@ -151,7 +151,7 @@ public class MatieresController implements Initializable {
         String id_matiere = textSstatut.getText().toString();
         try {
             preparedStatement = connection.prepareStatement(deltitem);
-            if (id_matiere.matches("^[0-9]*$")) {
+            if (id_matiere.matches("^[0-9]*$") || id_matiere == "") {
                 preparedStatement.setInt(1, Integer.parseInt(textSstatut.getText()));
             }
             else{
@@ -198,7 +198,7 @@ public class MatieresController implements Initializable {
 
     @FXML
     private void addAction(ActionEvent event) throws IOException {
-        if (textNomMatiere.getText().isEmpty() || textDateMatiere.getValue() == null || textCoefficient.getText().toString() == "") {
+        if (textNomMatiere.getText().isEmpty() || textDateMatiere.getValue() == null || textCoefficient.getText().toString().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veuillez renseigner tous les champs");
             return;
         }
@@ -226,6 +226,11 @@ public class MatieresController implements Initializable {
         afficherValeurs();
         fetRowList();
     };
+
+    @FXML
+    void btnSearch(ActionEvent event) {
+
+    }
     
     
     @FXML
@@ -242,8 +247,41 @@ public class MatieresController implements Initializable {
 
     @FXML
     void updateAction(ActionEvent event) {
+        String Coefficient = textCoefficient.getText().toString();
+        String id_matiere = textSstatut.getText().toString();
 
-    }
+        if (textNomMatiere.getText().isEmpty() || textDateMatiere.getValue() == null || textCoefficient.getText().isEmpty() || textSstatut.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veuillez renseigner tous les champs");
+            return;
+        }
+       
+        
+        try {
+            preparedStatement = connection.prepareStatement(update);
+            preparedStatement.setString(1, textNomMatiere.getText().toString());
+            preparedStatement.setDate(2, Date.valueOf(textDateMatiere.getValue()));
+            // preparedStatement.setInt(3, Integer.parseInt(Coefficient));
+
+            if (id_matiere.matches("^[0-9]*$")) {
+                preparedStatement.setInt(4, Integer.parseInt(id_matiere));
+            }
+            else{
+                showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Id matiere doit etre un chiffre");
+            }
+
+            if (Coefficient.matches("^[0-9]*$")) {
+                preparedStatement.setInt(3, Integer.parseInt(Coefficient));
+            }
+            else{
+                showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Coefficient de la matiere doit etre un chiffre");
+            }
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        afficherValeurs();
+        fetRowList();
+    };
     
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);

@@ -128,21 +128,21 @@
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOverview" prefHeight="576.0" prefWidth="800.0" style="-fx-background-color: #fff;">
                <children>
-                  <TextField fx:id="Recherche" layoutX="53.0" layoutY="70.0" prefHeight="27.0" prefWidth="183.0" promptText="Recherche" style="-fx-background-color: #fff; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
+                  <TextField fx:id="Recherche" layoutX="53.0" layoutY="108.0" prefHeight="27.0" prefWidth="183.0" promptText="Recherche" style="-fx-background-color: #fff; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
                      <stylesheets>
                         <URL value="@styles/Exams.css" />
                         <URL value="@styles/Exams.css" />
                      </stylesheets>
                   </TextField>
-                  <Label fx:id="textTotalMat" layoutX="236.0" layoutY="109.0" prefHeight="69.0" prefWidth="45.0" text="000" textAlignment="CENTER" textFill="#2a73ff">
+                  <Label fx:id="textTotalMat" layoutX="236.0" layoutY="146.0" prefHeight="69.0" prefWidth="45.0" text="000" textAlignment="CENTER" textFill="#2a73ff">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" layoutX="473.0" layoutY="109.0" prefHeight="69.0" prefWidth="312.0" spacing="50.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="473.0" layoutY="146.0" prefHeight="69.0" prefWidth="312.0" spacing="50.0">
                      <children>
                         <TextField fx:id="textSstatut" prefHeight="26.0" prefWidth="87.0" text="id matiere" />
-                        <Button fx:id="btndel" mnemonicParsing="false" onAction="#deleteAction" prefHeight="27.0" prefWidth="175.0" style="-fx-background-color: red;" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Supprimer" />
+                        <Button fx:id="btndel" mnemonicParsing="false" onAction="#deleteAction" prefHeight="27.0" prefWidth="153.0" style="-fx-background-color: red;" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Supprimer" />
                      </children>
                   </HBox>
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
@@ -160,7 +160,7 @@
                         <Button fx:id="btnupdate" layoutX="629.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: green;" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Modifier" />
                      </children>
                   </Group>
-                  <Label layoutX="53.0" layoutY="120.0" prefHeight="46.0" prefWidth="183.0" text="Total Matières :">
+                  <Label layoutX="53.0" layoutY="157.0" prefHeight="46.0" prefWidth="183.0" text="Total Matières :">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -170,6 +170,22 @@
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
+                  <Button fx:id="btnrechercher" layoutX="251.0" layoutY="109.0" mnemonicParsing="false" onAction="#btnSearch" prefHeight="27.0" prefWidth="82.0" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Rechercher" />
+                  <Button fx:id="btnOrders1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="575.0" layoutY="81.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="45.0" style="-fx-background-color: #fff;">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Matieresblue.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
