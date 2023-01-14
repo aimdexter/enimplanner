@@ -58,9 +58,7 @@ public class SignupController implements Initializable{
     public void Home(ActionEvent event) throws IOException {
 
         Window owner = home.getScene().getWindow();
-
         
-     
         String sql = "INSERT INTO etudiant (nom, prenom, niveau, email, password) VALUES (?, ?, ? , ?, ?)";
 
         if (textNom.getText().isEmpty() || textPrenom.getText().isEmpty() || textOption.getText().isEmpty() || textOption.getText().isEmpty() || textEmail.getText().isEmpty() || textPassword.getText().isEmpty()) {

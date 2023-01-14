@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -170,88 +169,16 @@
                               <Label text="Tronc Commun" />
                            </children>
                         </VBox>
-                        <Button fx:id="btndel" mnemonicParsing="false" onAction="#deleteAction" prefHeight="26.0" prefWidth="161.0" text="Button" />
-                        <TextField fx:id="textSstatut" prefHeight="26.0" prefWidth="214.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="178.0" prefHeight="42.0" prefWidth="737.0" spacing="120.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <Label prefHeight="17.0" prefWidth="70.0" text="Matière">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefHeight="17.0" prefWidth="90.0" text="Coefficient">
-                           <HBox.margin>
-                              <Insets right="60.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefHeight="17.0" prefWidth="51.0" text="Statut">
-                           <HBox.margin>
-                              <Insets left="5.0" right="15.0" />
-                           </HBox.margin>
-                        </Label>
-                        <ImageView fx:id="btnadd" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/ajouter.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="30.0" right="60.0" />
-                           </HBox.margin>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0">
-                     <content>
-                        <VBox fx:id="pnItems" prefHeight="318.0" prefWidth="744.0" spacing="5.0" style="-fx-background-color: #fff;">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                           <stylesheets>
-                              <URL value="@styles/Exams.css" />
-                              <URL value="@styles/Exams.css" />
-                           </stylesheets>
-                           <children>
-                              <HBox fx:id="itemC" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="735.0" spacing="150.0" style="-fx-background-color: #fff; -fx-background-radius: 5; -fx-background-insets: 0;">
-                                 <children>
-                                    <Label fx:id="textmatiere" text="KeepToo" textFill="#b7c3d7">
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <Label fx:id="textcoefficient" text="JFK" textFill="#b7c3d7">
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </Label>
-                                    <HBox alignment="CENTER" prefHeight="53.0" prefWidth="54.0" spacing="10.0">
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </HBox>
-                                 </children>
-                                 <effect>
-                                    <DropShadow blurType="GAUSSIAN" height="5.0" radius="2.0" width="5.0" />
-                                 </effect>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </HBox>
-                              <TableView fx:id="textlistMat" prefHeight="200.0" prefWidth="200.0" />
-                           </children>
-                        </VBox>
-                     </content>
-                     
-                     <stylesheets>
-                        <URL value="@styles/Exams.css" />
-                        <URL value="@styles/Matieres.css" />
-                     </stylesheets>
-                  </ScrollPane>
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/recherche.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="btndel" layoutX="218.0" layoutY="190.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="27.0" prefWidth="82.0" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Supprimer" />
+                  <TextField fx:id="textSstatut" layoutX="61.0" layoutY="190.0" prefHeight="26.0" prefWidth="100.0" />
+                  <TableView fx:id="textlistMat" layoutX="53.0" layoutY="248.0" prefHeight="321.0" prefWidth="713.0" />
                </children>
             </Pane>
          </children>
