@@ -10,16 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import io.github.palexdev.materialfx.controls.MFXTableColumn;
-import io.github.palexdev.materialfx.controls.MFXTableView;
 import javafx.beans.property.SimpleStringProperty;
-import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -38,13 +33,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Callback;
 
 public class MatieresController implements Initializable {
 
+    @FXML
+    private TextField textCoefficient;
+    @FXML
+    private Button btnExamens;
     @FXML
     private Label textUsername;
     @FXML
@@ -70,12 +68,15 @@ public class MatieresController implements Initializable {
     ResultSet resultSetMat = null;
     ObservableList<String> items = FXCollections.observableArrayList();
     private ObservableList<ObservableList> data;
+    Stage dialogStage = new Stage();
+    Scene scene;
+
 
     String sql = "SELECT * FROM etudiant WHERE id_etudiant = \'"+loggedInUserId+"';";
     String countMatiere = "SELECT COUNT(*) FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
-    String listmat = "SELECT * FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
+    String listmat = "SELECT id_matiere,nom_matiere,date_matiere , id_etudiant FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
     String deltitem = "DELETE FROM matiere WHERE id_matiere = ?";
-    String add = "INSERT INTO matiere (nom_matiere,date_matiere, id_etudiant) VALUES (?,?,"+loggedInUserId+");";
+    String add = "INSERT INTO matiere (nom_matiere,date_matiere,coefficient , id_etudiant) VALUES (?,?,?,"+loggedInUserId+");";
     private Window owner;
 
 
@@ -146,9 +147,17 @@ public class MatieresController implements Initializable {
     //Delete rows and data from the list by id_matiere
     @FXML
     private void deleteAction(ActionEvent event) {
+
+        String id_matiere = textSstatut.getText().toString();
         try {
             preparedStatement = connection.prepareStatement(deltitem);
-            preparedStatement.setInt(1, Integer.parseInt(textSstatut.getText()));
+            if (id_matiere.matches("^[0-9]*$")) {
+                preparedStatement.setInt(1, Integer.parseInt(textSstatut.getText()));
+            }
+            else{
+                showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veillez enter un chiffre");
+            }
+
             preparedStatement.executeUpdate();
             
         } catch (Exception e) {
@@ -189,28 +198,53 @@ public class MatieresController implements Initializable {
 
     @FXML
     private void addAction(ActionEvent event) throws IOException {
-        if (textNomMatiere.getText().isEmpty() || textDateMatiere.getValue() == null) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-            "Veuillez renseigner tous les champs");
+        if (textNomMatiere.getText().isEmpty() || textDateMatiere.getValue() == null || textCoefficient.getText().toString() == "") {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veuillez renseigner tous les champs");
             return;
         }
 
-        String NomMatiere = textNomMatiere.getText().toString();
-        LocalDate DateMatiere = textDateMatiere.getValue();
+        // String NomMatiere = textNomMatiere.getText().toString();
+        String Coefficient = textCoefficient.getText().toString();
+        // LocalDate DateMatiere = textDateMatiere.getValue();
         
         try {
             preparedStatement = connection.prepareStatement(add);
-            preparedStatement.setString(1, NomMatiere);
-            preparedStatement.setDate(2, Date.valueOf(DateMatiere));
+            preparedStatement.setString(1, textNomMatiere.getText().toString());
+            preparedStatement.setDate(2, Date.valueOf(textDateMatiere.getValue()));
+            // preparedStatement.setInt(3, Integer.parseInt(Coefficient));
+
+            if (Coefficient.matches("^[0-9]*$")) {
+                preparedStatement.setInt(3, Integer.parseInt(Coefficient));
+            }
+            else{
+                showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veillez enter un chiffre");
+            }
             preparedStatement.executeUpdate();
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         afficherValeurs();
         fetRowList();
     };
+    
+    
+    @FXML
+    void switchExamen(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("exams.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
+    @FXML
+    void updateAction(ActionEvent event) {
+
+    }
+    
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
