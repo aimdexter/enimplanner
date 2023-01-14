@@ -197,7 +197,6 @@ public class MatieresController implements Initializable {
 
         String NomMatiere = textNomMatiere.getText().toString();
         LocalDate DateMatiere = textDateMatiere.getValue();
-        System.out.println(DateMatiere);
         
         try {
             preparedStatement = connection.prepareStatement(add);
