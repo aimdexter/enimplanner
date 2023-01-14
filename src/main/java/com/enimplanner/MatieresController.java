@@ -52,7 +52,7 @@ public class MatieresController implements Initializable {
     @FXML
     private Button  btndel;
     @FXML
-    private TextField textSstatut;
+    private TextField textMat;
     @FXML
     private Button btnadd;
     @FXML
@@ -148,11 +148,11 @@ public class MatieresController implements Initializable {
     @FXML
     private void deleteAction(ActionEvent event) {
 
-        String id_matiere = textSstatut.getText().toString();
+        String id_matiere = textMat.getText().toString();
         try {
             preparedStatement = connection.prepareStatement(deltitem);
             if (id_matiere.matches("^[0-9]*$") || id_matiere == "") {
-                preparedStatement.setInt(1, Integer.parseInt(textSstatut.getText()));
+                preparedStatement.setInt(1, Integer.parseInt(textMat.getText()));
             }
             else{
                 showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veillez enter un chiffre");
@@ -203,15 +203,12 @@ public class MatieresController implements Initializable {
             return;
         }
 
-        // String NomMatiere = textNomMatiere.getText().toString();
         String Coefficient = textCoefficient.getText().toString();
-        // LocalDate DateMatiere = textDateMatiere.getValue();
         
         try {
             preparedStatement = connection.prepareStatement(add);
             preparedStatement.setString(1, textNomMatiere.getText().toString());
             preparedStatement.setDate(2, Date.valueOf(textDateMatiere.getValue()));
-            // preparedStatement.setInt(3, Integer.parseInt(Coefficient));
 
             if (Coefficient.matches("^[0-9]*$")) {
                 preparedStatement.setInt(3, Integer.parseInt(Coefficient));
@@ -248,9 +245,9 @@ public class MatieresController implements Initializable {
     @FXML
     void updateAction(ActionEvent event) {
         String Coefficient = textCoefficient.getText().toString();
-        String id_matiere = textSstatut.getText().toString();
+        String id_matiere = textMat.getText().toString();
 
-        if (textNomMatiere.getText().isEmpty() || textDateMatiere.getValue() == null || textCoefficient.getText().isEmpty() || textSstatut.getText().isEmpty()) {
+        if (textNomMatiere.getText().isEmpty() || textDateMatiere.getValue() == null || textCoefficient.getText().isEmpty() || textMat.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veuillez renseigner tous les champs");
             return;
         }
@@ -260,7 +257,6 @@ public class MatieresController implements Initializable {
             preparedStatement = connection.prepareStatement(update);
             preparedStatement.setString(1, textNomMatiere.getText().toString());
             preparedStatement.setDate(2, Date.valueOf(textDateMatiere.getValue()));
-            // preparedStatement.setInt(3, Integer.parseInt(Coefficient));
 
             if (id_matiere.matches("^[0-9]*$")) {
                 preparedStatement.setInt(4, Integer.parseInt(id_matiere));
