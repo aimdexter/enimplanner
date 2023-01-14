@@ -4,8 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -170,6 +170,8 @@
                               <Label text="Tronc Commun" />
                            </children>
                         </VBox>
+                        <Button fx:id="btndel" mnemonicParsing="false" onAction="#deleteAction" prefHeight="26.0" prefWidth="161.0" text="Button" />
+                        <TextField fx:id="textSstatut" prefHeight="26.0" prefWidth="214.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="178.0" prefHeight="42.0" prefWidth="737.0" spacing="120.0" style="-fx-background-color: #fff;">
@@ -222,27 +224,7 @@
                                           <Insets />
                                        </HBox.margin>
                                     </Label>
-                                    <Button fx:id="textSstatut" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-border-color: #2A73FF; -fx-border-radius: 20; -fx-background-color: transparent;" stylesheets="@styles/Matieres.css" text="active">
-                                       <HBox.margin>
-                                          <Insets left="50.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                    <HBox fx:id="btnaddmodify" alignment="CENTER" prefHeight="53.0" prefWidth="54.0" spacing="10.0">
-                                       <children>
-                                          <ImageView fx:id="btnmodif" fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@images/modifypng.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ImageView fx:id="btndel" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@images/delete.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
+                                    <HBox alignment="CENTER" prefHeight="53.0" prefWidth="54.0" spacing="10.0">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -255,7 +237,7 @@
                                     <Insets />
                                  </VBox.margin>
                               </HBox>
-                              <ListView fx:id="textlistMat" prefHeight="282.0" prefWidth="735.0" />
+                              <TableView fx:id="textlistMat" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </VBox>
                      </content>
