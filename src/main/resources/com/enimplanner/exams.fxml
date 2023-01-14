@@ -133,7 +133,7 @@
                         <URL value="@styles/Exams.css" />
                      </stylesheets>
                   </TextField>
-                  <Label fx:id="textTotalMat" layoutX="236.0" layoutY="146.0" prefHeight="69.0" prefWidth="45.0" text="000" textAlignment="CENTER" textFill="#2a73ff">
+                  <Label fx:id="textTotalExam" layoutX="236.0" layoutY="146.0" prefHeight="69.0" prefWidth="45.0" text="000" textAlignment="CENTER" textFill="#2a73ff">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -145,12 +145,12 @@
                         <Image url="@images/recherche.png" />
                      </image>
                   </ImageView>
-                  <TableView fx:id="textlistMat" layoutX="53.0" layoutY="248.0" prefHeight="321.0" prefWidth="713.0" />
+                  <TableView fx:id="textlistExam" layoutX="53.0" layoutY="248.0" prefHeight="321.0" prefWidth="713.0" />
                   <Group layoutX="53.0" layoutY="215.0">
                      <children>
                         <Button fx:id="btnadd" layoutX="535.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="82.0" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Ajouter" />
-                        <TextField fx:id="textNomMatiere" layoutY="2.0" prefHeight="26.0" prefWidth="262.0" promptText="Nom de la Examen" />
-                        <DatePicker fx:id="textDateMatiere" layoutX="283.0" layoutY="2.0" prefHeight="25.0" prefWidth="238.0" promptText="Date de l'examen" />
+                        <TextField fx:id="textNomExam" layoutY="2.0" prefHeight="26.0" prefWidth="262.0" promptText="Nom de la Examen" />
+                        <DatePicker fx:id="textDateExam" layoutX="283.0" layoutY="2.0" prefHeight="25.0" prefWidth="238.0" promptText="Date de l'examen" />
                         <Button fx:id="btnupdate" layoutX="629.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: green;" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Modifier" />
                      </children>
                   </Group>
