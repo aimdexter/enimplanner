@@ -63,6 +63,8 @@ public class MatieresController implements Initializable {
     private Button btnMatTodo;
     @FXML
     private Button btnMatLogout;
+    @FXML
+    private Button userTaches;
 
 
     Connection connection = null;
@@ -307,6 +309,19 @@ public class MatieresController implements Initializable {
         afficherValeurs();
         fetRowList();
     };
+    
+    @FXML
+    void userTaches(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("todos.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+
+    }
     
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
