@@ -250,17 +250,6 @@ public class MatieresController implements Initializable {
     void switchMatProfile(ActionEvent event) throws IOException {
     }
 
-    // void switchMatTodo(ActionEvent event) throws IOException {
-    //     Node source = (Node) event.getSource();
-    //     dialogStage = (Stage) source.getScene().getWindow();
-    //     dialogStage.close();
-        
-    //     Parent root = FXMLLoader.load(getClass().getResource("todos.fxml"));
-    //     Scene scene = new Scene(root);
-    //     dialogStage.setScene(scene);
-    //     dialogStage.show();
-    // }
-
     @FXML
     void switchMatExamen(ActionEvent event) throws IOException {
         Node source = (Node) event.getSource();

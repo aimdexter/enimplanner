@@ -25,22 +25,16 @@ public class SignupController implements Initializable{
 
     @FXML
     private Button home;
-
     @FXML
     private TextField textEmail;
-
     @FXML
     private TextField textNom;
-
     @FXML
     private TextField textOption;
-
     @FXML
     private PasswordField textPassword;
-
     @FXML
     private TextField textPrenom;
-
     @FXML
     private Button textConnexion;
 
