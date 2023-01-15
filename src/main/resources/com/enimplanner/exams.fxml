@@ -37,7 +37,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="Profile" textFill="#e7e5e5">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="Profile" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -58,7 +58,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="Matières">
+            <Button fx:id="btnMatiere" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#switchMatieres" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="Matières">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -88,7 +88,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="ToDos">
+            <Button fx:id="btnTodo" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#switchExamTodo" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="ToDos">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -103,7 +103,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnPackages" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="Se déconnecter">
+            <Button fx:id="btnExamLogout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#switchExamLogout" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="Se déconnecter">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -165,6 +165,17 @@
                      </font>
                   </Label>
                   <Button fx:id="btnrechercher" layoutX="251.0" layoutY="109.0" mnemonicParsing="false" onAction="#btnSearch" prefHeight="27.0" prefWidth="82.0" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Rechercher" />
+                  <Group layoutX="609.0" layoutY="75.0" style="-fx-background-color: blue;" />
+                  <Group layoutX="594.0" layoutY="60.0">
+                     <children>
+                        <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="83.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/ajouter.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnadd" layoutX="73.0" layoutY="8.0" mnemonicParsing="false" onAction="#addAction" opacity="0.0" prefHeight="43.0" prefWidth="57.0" styleClass="button2" stylesheets="@styles/Home.css" textFill="#0c39ff" />
+                     </children>
+                  </Group>
                </children>
             </Pane>
          </children>

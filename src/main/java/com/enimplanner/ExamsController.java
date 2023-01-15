@@ -7,7 +7,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import static com.enimplanner.LoginController.loggedInUserId;
 
 import java.io.IOException;
@@ -19,28 +18,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Callback;
@@ -50,51 +39,32 @@ public class ExamsController implements Initializable {
 
         @FXML
         private TextField Recherche;
-    
         @FXML
         private Button btnExamens;
-    
         @FXML
-        private Button btnMenus;
-    
-        @FXML
-        private Button btnOrders;
-    
-        @FXML
-        private Button btnOverview;
-    
-        @FXML
-        private Button btnPackages;
-    
+        private Button btnTodo;
         @FXML
         private Button btnadd;
-    
         @FXML
         private Button btndel;
-    
         @FXML
         private Button btnrechercher;
-    
         @FXML
         private Button btnupdate;
-    
         @FXML
         private DatePicker textDateExam;
-    
         @FXML
         private TextField textExam;
-    
         @FXML
         private TextField textNomExam;
-    
         @FXML
         private Label textTotalExam;
-    
         @FXML
         private Label textUsername;
-    
         @FXML
         private TableView textlistExam;
+        @FXML
+        private Button btnExamLogout;
     
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -281,6 +251,45 @@ public class ExamsController implements Initializable {
         fetRowList();
     };
     
+    @FXML
+    void switchMatieres(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("matieres.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
+
+    @FXML
+    void switchExamLogout(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
+
+
+    @FXML
+    void switchExamTodo(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("todos.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -290,6 +299,5 @@ public class ExamsController implements Initializable {
         alert.initOwner(owner);
         alert.show();
     }
-
 
 }

@@ -41,6 +41,10 @@ public class SignupController implements Initializable{
     @FXML
     private TextField textPrenom;
 
+    @FXML
+    private Button textConnexion;
+
+
 
 
     Stage dialogStage = new Stage();
@@ -111,6 +115,19 @@ public class SignupController implements Initializable{
         alert.initOwner(owner);
         alert.show();
     }
+
+    @FXML
+    void switchConnexion(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

@@ -11,9 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -42,8 +39,6 @@ public class MatieresController implements Initializable {
     @FXML
     private TextField textCoefficient;
     @FXML
-    private Button btnExamens;
-    @FXML
     private Label textUsername;
     @FXML
     private Label textTotalMat;
@@ -59,6 +54,15 @@ public class MatieresController implements Initializable {
     private DatePicker textDateMatiere;
     @FXML
     private TextField textNomMatiere;
+
+    @FXML
+    private Button btnMatExamen;
+    @FXML
+    private Button btnMatProfile;
+    @FXML
+    private Button btnMatTodo;
+    @FXML
+    private Button btnMatLogout;
 
 
     Connection connection = null;
@@ -226,12 +230,37 @@ public class MatieresController implements Initializable {
 
     @FXML
     void btnSearch(ActionEvent event) {
-
     }
     
-    
     @FXML
-    void switchExamen(ActionEvent event) throws IOException {
+    void switchMatLogout(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
+    @FXML
+    void switchMatProfile(ActionEvent event) throws IOException {
+    }
+
+    // void switchMatTodo(ActionEvent event) throws IOException {
+    //     Node source = (Node) event.getSource();
+    //     dialogStage = (Stage) source.getScene().getWindow();
+    //     dialogStage.close();
+        
+    //     Parent root = FXMLLoader.load(getClass().getResource("todos.fxml"));
+    //     Scene scene = new Scene(root);
+    //     dialogStage.setScene(scene);
+    //     dialogStage.show();
+    // }
+
+    @FXML
+    void switchMatExamen(ActionEvent event) throws IOException {
         Node source = (Node) event.getSource();
         dialogStage = (Stage) source.getScene().getWindow();
         dialogStage.close();
