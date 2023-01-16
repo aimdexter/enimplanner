@@ -81,7 +81,7 @@ public class ProfileController implements Initializable {
     //La variable "updateprofile" est de type "String" et est initialisée avec une instruction SQL qui met à jour les colonnes "nom", "prenom", "niveau" et "mot de passe" de la table "etudiant" où l'id de l'étudiant est égal à la variable "loggedInUserId". Les valeurs à mettre à jour sont définies par des "?" qui seront remplacées par des valeurs concrètes lors de l'exécution de la requête. Cette instruction SQL permet de mettre à jour les informations d'un utilisateur connecté dans la base de données.
     String updateprofile = "UPDATE etudiant SET nom = ?, prenom = ? , niveau = ?, password = ? WHERE id_etudiant = \'"+loggedInUserId+"';";
 
-
+    //Ce code est une méthode de la classe actuelle qui surcharge (override) la méthode "initialize" de la classe parente.
     //La méthode "initialize" est une méthode de la classe "Initializable" qui est implémentée par la classe dans laquelle cette méthode est définie. Elle prend en entrée deux arguments de type URL et ResourceBundle qui sont utilisés pour définir les informations de localisation de la vue associée.
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
