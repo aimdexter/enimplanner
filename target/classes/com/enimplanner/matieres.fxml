@@ -136,28 +136,23 @@
                         <URL value="@styles/Home.css" />
                      </stylesheets>
                   </TextField>
-                  <Label fx:id="textTotalMat" layoutX="236.0" layoutY="146.0" prefHeight="69.0" prefWidth="45.0" text="000" textAlignment="CENTER" textFill="#2a73ff">
+                  <Label fx:id="textTotalMat" layoutX="236.0" layoutY="147.0" prefHeight="69.0" prefWidth="45.0" text="000" textAlignment="CENTER" textFill="#2a73ff">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <TextField fx:id="textMat" layoutX="364.0" layoutY="168.0" prefHeight="26.0" prefWidth="198.0" promptText="Id de votre matiere" stylesheets="@styles/Home.css" />
-                  <Button fx:id="btndel" layoutX="592.0" layoutY="167.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="27.0" prefWidth="172.0" text="Supprimer" />
-                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="530.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/recherche.png" />
-                     </image>
-                  </ImageView>
+                  <Button fx:id="btndel" layoutX="592.0" layoutY="168.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="27.0" prefWidth="172.0" stylesheets="@styles/Exams.css" text="Supprimer" />
                   <Group layoutX="53.0" layoutY="215.0">
                      <children>
-                        <Button fx:id="btnadd" layoutX="537.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="82.0" text="Ajouter" />
+                        <Button fx:id="btnadd" layoutX="537.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="87.0" stylesheets="@styles/Exams.css" text="  Ajouter" />
                         <TextField fx:id="textNomMatiere" prefHeight="26.0" prefWidth="172.0" promptText="Nom de la Matiere" />
-                        <DatePicker fx:id="textDateMatiere" layoutX="308.0" layoutY="2.0" prefHeight="25.0" prefWidth="206.0" promptText="Date de debut de la matietiere" />
+                        <DatePicker fx:id="textDateMatiere" layoutX="308.0" layoutY="2.0" prefHeight="25.0" prefWidth="206.0" promptText="Date de debut de la matiere" />
                         <TextField fx:id="textCoefficient" layoutX="187.0" layoutY="2.0" prefHeight="26.0" prefWidth="100.0" promptText="Coefficient" />
-                        <Button fx:id="btnupdate" layoutX="629.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="27.0" prefWidth="82.0" text="Modifier" />
+                        <Button fx:id="btnupdate" layoutX="629.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="27.0" prefWidth="82.0" stylesheets="@styles/Exams.css" text="Modifier" />
                      </children>
                   </Group>
-                  <Label layoutX="53.0" layoutY="157.0" prefHeight="46.0" prefWidth="183.0" text="Total Matières :">
+                  <Label layoutX="53.0" layoutY="158.0" prefHeight="46.0" prefWidth="183.0" text="Total Matières :">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -191,6 +186,11 @@
                         <TableColumn fx:id="col_Id_Etud" prefWidth="75.0" text="Id Etudiant" />
                      </columns>
                   </TableView>
+                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="536.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/recherche.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>
