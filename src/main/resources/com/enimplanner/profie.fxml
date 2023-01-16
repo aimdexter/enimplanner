@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.enimplanner.MatieresController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.enimplanner.MatieresController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="580.0" prefWidth="259.0" style="-fx-background-color: #0c39ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -117,7 +117,7 @@
       </VBox>
       <StackPane accessibleRole="BUTTON" layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label prefHeight="58.0" prefWidth="665.0" text="Profile" StackPane.alignment="TOP_LEFT">
+            <Label prefHeight="58.0" prefWidth="665.0" text="    Profile" StackPane.alignment="TOP_LEFT">
                <StackPane.margin>
                   <Insets />
                </StackPane.margin>
@@ -202,7 +202,7 @@
                   <Insets bottom="200.0" left="80.0" />
                </StackPane.margin>
             </Group>
-            <Button fx:id="btnmodify" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="634.0" style="-fx-background-color: #0C39FF;" text="Mettre à jour" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+            <Button fx:id="btnmodify" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="634.0" styleClass="btn2" text="Mettre à jour" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
                <font>
                   <Font size="14.0" />
                </font>

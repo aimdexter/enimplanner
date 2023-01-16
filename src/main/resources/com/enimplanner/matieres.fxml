@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.enimplanner.MatieresController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" stylesheets="@styles/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.enimplanner.MatieresController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="580.0" prefWidth="259.0" style="-fx-background-color: #0c39ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -129,7 +129,7 @@
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOverview" prefHeight="576.0" prefWidth="800.0" style="-fx-background-color: #fff;">
                <children>
-                  <TextField fx:id="txtRecherche" layoutX="53.0" layoutY="108.0" prefHeight="27.0" prefWidth="509.0" promptText="Recherche" style="-fx-background-color: #fff; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" styleClass="label">
+                  <TextField fx:id="txtRecherche" layoutX="53.0" layoutY="108.0" prefHeight="27.0" prefWidth="712.0" promptText="Recherche" style="-fx-background-color: #fff; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" styleClass="label">
                      <stylesheets>
                         <URL value="@styles/Exams.css" />
                         <URL value="@styles/Exams.css" />
@@ -142,19 +142,19 @@
                      </font>
                   </Label>
                   <TextField fx:id="textMat" layoutX="364.0" layoutY="168.0" prefHeight="26.0" prefWidth="198.0" promptText="Id de votre matiere" stylesheets="@styles/Home.css" />
-                  <Button fx:id="btndel" layoutX="592.0" layoutY="167.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="27.0" prefWidth="172.0" text="Supprimer" />
-                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="530.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="btndel" layoutX="592.0" layoutY="167.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="27.0" prefWidth="172.0" styleClass="btn2" text="Supprimer" />
+                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="740.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/recherche.png" />
                      </image>
                   </ImageView>
                   <Group layoutX="53.0" layoutY="215.0">
                      <children>
-                        <Button fx:id="btnadd" layoutX="537.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="82.0" text="Ajouter" />
+                        <Button fx:id="btnadd" layoutX="537.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="82.0" styleClass="btn2" text="Ajouter" />
                         <TextField fx:id="textNomMatiere" prefHeight="26.0" prefWidth="172.0" promptText="Nom de la Matiere" />
                         <DatePicker fx:id="textDateMatiere" layoutX="308.0" layoutY="2.0" prefHeight="25.0" prefWidth="206.0" promptText="Date de debut de la matietiere" />
                         <TextField fx:id="textCoefficient" layoutX="187.0" layoutY="2.0" prefHeight="26.0" prefWidth="100.0" promptText="Coefficient" />
-                        <Button fx:id="btnupdate" layoutX="629.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="27.0" prefWidth="82.0" text="Modifier" />
+                        <Button fx:id="btnupdate" layoutX="629.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="27.0" prefWidth="82.0" styleClass="btn2" text="Modifier" />
                      </children>
                   </Group>
                   <Label layoutX="53.0" layoutY="157.0" prefHeight="46.0" prefWidth="183.0" text="Total Matières :">
@@ -167,7 +167,6 @@
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnrechercher" layoutX="592.0" layoutY="108.0" mnemonicParsing="false" onAction="#btnSearch" prefHeight="27.0" prefWidth="172.0" style="-fx-background-color: blue;" styleClass="button4" text="Rechercher" textFill="WHITE" />
                   <Button fx:id="btnOrders1" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="621.0" layoutY="31.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="67.0" style="-fx-background-color: #fff;">
                      <padding>
                         <Insets left="50.0" />

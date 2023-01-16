@@ -1,0 +1,18 @@
+.btn2 {
+  -fx-background-radius: 10px;
+  -fx-background-color: #0c39ff;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+}
+
+.btn2:hover {
+  -fx-cursor: hand;
+  -fx-border-color: weight;
+  -fx-background-color: black;
+  -fx-border-radius: 10px;
+  -fx-font-weight: bold;
+  -fx-text-fill: white;
+}
+.btn2:pressed {
+  -fx-rotate: 5;
+}

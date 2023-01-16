@@ -49,7 +49,7 @@
             <TextField fx:id="textOption" layoutX="6.0" layoutY="100.0" prefHeight="34.0" prefWidth="275.0" promptText="Option" stylesheets="@styles/loginlogout.css" />
             <TextField fx:id="textEmail" layoutX="6.0" layoutY="146.0" prefHeight="34.0" prefWidth="275.0" promptText="Email" stylesheets="@styles/loginlogout.css" />
             <PasswordField fx:id="textPassword" layoutX="5.0" layoutY="194.0" prefHeight="34.0" prefWidth="275.0" promptText="Mot de passe" stylesheets="@styles/loginlogout.css" />
-            <Button fx:id="home" layoutX="5.0" layoutY="243.0" mnemonicParsing="false" onAction="#Home" prefHeight="34.0" prefWidth="275.0" style="-fx-background-color: #0C39FF;" text="S'inscrire" textFill="WHITE">
+            <Button fx:id="home" layoutX="5.0" layoutY="243.0" mnemonicParsing="false" onAction="#Home" prefHeight="34.0" prefWidth="275.0" styleClass="btn2" stylesheets="@styles/style.css" text="S'inscrire" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
