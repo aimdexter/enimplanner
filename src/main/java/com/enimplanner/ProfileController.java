@@ -67,10 +67,10 @@ public class ProfileController implements Initializable {
 
     String sql = "SELECT * FROM etudiant WHERE id_etudiant = \'"+loggedInUserId+"';";
     String updateprofile = "UPDATE etudiant SET nom = ?, prenom = ? , niveau = ?, password = ? WHERE id_etudiant = \'"+loggedInUserId+"';";
-    
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        // afficherValeurs();
+        afficherValeurs();
     }
    
     public ProfileController() {
@@ -78,39 +78,58 @@ public class ProfileController implements Initializable {
     }
 
 
-    //Afficher les vdonnees de l utilisteur
-    // private void afficherValeurs() {
-    //     try {
-    //         Statement = connection.createStatement();
-    //         resultSet = Statement.executeQuery(sql);
-    //         if(resultSet.next()){
-    //             String nom = resultSet.getString("nom").toUpperCase();
-    //             String prenom = resultSet.getString("prenom").toUpperCase();
-    //             String Username = nom +" "+ prenom ;
-    //             textUsername.setText(Username);
-    //             usernom.setText(nom);
-    //             userprenom.setText(prenom);
-    //             useroption.setText(resultSet.getString("niveau").toUpperCase());
-    //             useremail.setText(resultSet.getString("email").toUpperCase());
-    //             usermdp.setText(resultSet.getString("password").toUpperCase());
+    // Afficher les vdonnees de l utilisteur
+    private void afficherValeurs() {
+        try {
+            Statement = connection.createStatement();
+            resultSet = Statement.executeQuery(sql);
+            if(resultSet.next()){
+                String nom = resultSet.getString("nom").toUpperCase();
+                String prenom = resultSet.getString("prenom").toUpperCase();
+                String Username = nom +" "+ prenom ;
+                textUsername.setText(Username);
+                usernom.setText(nom);
+                userprenom.setText(prenom);
+                useroption.setText(resultSet.getString("niveau").toUpperCase());
+                useremail.setText(resultSet.getString("email").toUpperCase());
+                usermdp.setText(resultSet.getString("password").toUpperCase());
 
-    //             textUsername.setText(Username);
+                textUsername.setText(Username);
 
-    //             txtnom.setText(nom);
-    //             txtprenom.setText(prenom);
-    //             txtniveau.setText(resultSet.getString("niveau").toUpperCase());
-    //             useremail.setText(resultSet.getString("email").toUpperCase());
-    //             txtpassword.setText(resultSet.getString("password").toUpperCase());
-    //         }
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-    // };
+                txtnom.setText(nom);
+                txtprenom.setText(prenom);
+                txtniveau.setText(resultSet.getString("niveau").toUpperCase());
+                useremail.setText(resultSet.getString("email").toUpperCase());
+                txtpassword.setText(resultSet.getString("password").toUpperCase());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    };
 
+
+    @FXML
+    void updateData(ActionEvent event) {
+            try {
+            preparedStatement = connection.prepareStatement(updateprofile);
+            preparedStatement.setString(1, txtnom.getText().toString());
+            preparedStatement.setString(2, txtprenom.getText().toString());
+            preparedStatement.setString(3, txtniveau.getText().toString());
+            preparedStatement.setString(4, txtpassword.getText().toString());
+            
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        afficherValeurs();
+
+
+    }
 
     
     // @FXML
-    // void updateData(ActionEvent event) {      
+    // void updateme(ActionEvent event) {      
     //     try {
     //         preparedStatement = connection.prepareStatement(updateprofile);
     //         preparedStatement.setString(1, txtnom.getText().toString());

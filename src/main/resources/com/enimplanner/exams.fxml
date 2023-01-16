@@ -25,7 +25,7 @@
          <children>
             <ImageView fitHeight="159.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Progile_image.jpg" />
+                  <Image url="@images/etudiant.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="10.0" top="50.0" />
