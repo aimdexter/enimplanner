@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -145,7 +146,13 @@
                         <Image url="@images/recherche.png" />
                      </image>
                   </ImageView>
-                  <TableView fx:id="textlistTodos" layoutX="53.0" layoutY="248.0" prefHeight="321.0" prefWidth="713.0" />
+                  <TableView fx:id="textlistTodos" layoutX="53.0" layoutY="248.0" prefHeight="321.0" prefWidth="713.0">
+                     <columns>
+                        <TableColumn fx:id="col_id_Tache" minWidth="75.0" prefWidth="75.0" text="Id Tache" />
+                        <TableColumn fx:id="col_Nom_Tache" prefWidth="75.0" text="Nom Tache" />
+                        <TableColumn fx:id="col_Date_Tache" prefWidth="75.0" text="Date Tache" />
+                        <TableColumn fx:id="col_Id_Etudiant" prefWidth="75.0" text="Id Etudiant" />
+                     </columns></TableView>
                   <Group layoutX="53.0" layoutY="215.0">
                      <children>
                         <Button fx:id="btnadd" layoutX="535.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="82.0" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Ajouter" />

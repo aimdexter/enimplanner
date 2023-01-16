@@ -18,8 +18,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -29,10 +27,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.util.Callback;
 
 public class TodosController implements Initializable{
 
@@ -61,17 +58,25 @@ public class TodosController implements Initializable{
     @FXML
     private Label textUsername;
     @FXML
-    private TableView textlistTodos;
-    @FXML
     private Button btnMatiere;
+    @FXML
+    private TableColumn<Todos, Date> col_Date_Tache;
+    @FXML
+    private TableColumn<Todos, Integer> col_Id_Etudiant;
+    @FXML
+    private TableColumn<Todos, String> col_Nom_Tache;
+    @FXML
+    private TableColumn<Todos, Integer> col_id_Tache;
+    @FXML
+    private TableView<Todos> textlistTodos;
+
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Statement Statement = null;
     ResultSet resultSet = null;
     ResultSet resultSetMat = null;
-    ObservableList<String> items = FXCollections.observableArrayList();
-    private ObservableList<ObservableList> data;
+    public ObservableList<Todos> data = FXCollections.observableArrayList();
     Stage dialogStage = new Stage();
     Scene scene;
 
@@ -91,10 +96,33 @@ public class TodosController implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
-        fetColumnList();
-        fetRowList();
+        afficherExamen();
         afficherValeurs();
     }
+
+    public void afficherExamen() {
+        try {
+            resultSet = connection.createStatement().executeQuery(listetodos);
+            data.clear();
+            while (resultSet.next()) {
+                data.add(new Todos(resultSet.getInt("id_todo"),
+                resultSet.getString("nom_todo"),
+                resultSet.getDate("date_todo"), 
+                resultSet.getInt("id_etudiant")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        col_id_Tache.setCellValueFactory(new PropertyValueFactory<Todos, Integer>("id_todo"));
+        col_Nom_Tache.setCellValueFactory(new PropertyValueFactory<Todos, String>("nom_todo"));
+        col_Date_Tache.setCellValueFactory(new PropertyValueFactory<Todos, Date>("date_todo"));
+        col_Id_Etudiant.setCellValueFactory(new PropertyValueFactory<Todos, Integer>("id_etudiant"));
+
+        textlistTodos.setItems(data);
+    }
+
+
 
     private void afficherValeurs() {
         try {
@@ -123,57 +151,6 @@ public class TodosController implements Initializable{
 
     };
 
-     //only fetch columns
-     private void fetColumnList() {
-
-        try {
-            resultSet = connection.createStatement().executeQuery(listetodos);
-
-            //SQL FOR SELECTING ALL OF MATIERE
-            for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
-                //We are using non property style for making dynamic table
-                final int j = i;
-                TableColumn col = new TableColumn(resultSet.getMetaData().getColumnName(i + 1).toUpperCase());
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
-                textlistTodos.setEditable(true);
-                textlistTodos.getColumns().removeAll(col);
-                textlistTodos.getColumns().addAll(col);
-
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error " + e.getMessage());
-
-        }
-    }
-
-    //fetches rows and data from the list
-    private void fetRowList() {
-        data = FXCollections.observableArrayList();
-        try {
-            resultSet = connection.createStatement().executeQuery(listetodos);
-
-            while (resultSet.next()) {
-                //Iterate Row
-                ObservableList row = FXCollections.observableArrayList();
-                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-                    //Iterate Column
-                    row.add(resultSet.getString(i));
-                }
-                data.add(row);
-
-            }
-            textlistTodos.setItems(data);
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-    }
-
-
     @FXML
     private void addAction(ActionEvent event) throws IOException {
         if (textNomTodo.getText().isEmpty() || textDateExam.getValue() == null) {
@@ -186,10 +163,12 @@ public class TodosController implements Initializable{
             preparedStatement.setDate(2, Date.valueOf(textDateExam.getValue()));
             preparedStatement.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+            "Cette tache existe déjà");
+            return;
         }
         afficherValeurs();
-        fetRowList();
+        afficherExamen();
     };
 
 
@@ -217,7 +196,7 @@ public class TodosController implements Initializable{
             e.printStackTrace();
         }
         afficherValeurs();
-        fetRowList();
+        afficherExamen();
     }
 
 
@@ -247,7 +226,7 @@ public class TodosController implements Initializable{
             e.printStackTrace();
         }
         afficherValeurs();
-        fetRowList();
+        afficherExamen();
     };
 
 

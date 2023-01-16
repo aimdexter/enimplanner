@@ -6,16 +6,18 @@ public class Matieres {
     int id_matiere;
     String nom_matiere;
     Date date_matiere;
+    int coefficient;
     int id_etudiant;
 
     public Matieres() {
         super();
     }
 
-    public Matieres(int id_matiere, String nom_matiere, Date date_matiere, int id_etudiant) {
+    public Matieres(int id_matiere, String nom_matiere, Date date_matiere, int coefficient,int id_etudiant) {
         this.id_matiere = id_matiere;
         this.nom_matiere = nom_matiere;
         this.date_matiere = date_matiere;
+        this.coefficient = coefficient;
         this.id_etudiant = id_etudiant;
     }
 
@@ -42,5 +44,13 @@ public class Matieres {
     }
     public void setId_etudiant(int id_etudiant) {
         this.id_etudiant = id_etudiant;
+    }
+
+    public int getCoefficient() {
+        return coefficient;
+    }
+
+    public void setCoefficient(int coefficient) {
+        this.coefficient = coefficient;
     }
 }

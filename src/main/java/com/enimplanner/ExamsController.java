@@ -164,7 +164,9 @@ public class ExamsController implements Initializable {
             preparedStatement.setDate(2, Date.valueOf(textDateExam.getValue()));
             preparedStatement.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+            "Cet examen existe déjà");
+            return;
         }
         afficherValeurs();
         afficherMatiere();

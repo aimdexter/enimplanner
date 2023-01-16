@@ -71,6 +71,8 @@ public class MatieresController implements Initializable {
     @FXML
     private TableColumn<Matieres, String> col_Nom_Mat;
     @FXML
+    private TableColumn<Matieres, Integer> col_Coef_Mat;
+    @FXML
     private TableColumn<Matieres, Integer> col_id_Mat;
 
 
@@ -87,7 +89,7 @@ public class MatieresController implements Initializable {
 
     String sql = "SELECT * FROM etudiant WHERE id_etudiant = \'"+loggedInUserId+"';";
     String countMatiere = "SELECT COUNT(*) FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
-    String listmat = "SELECT id_matiere,nom_matiere,date_matiere , id_etudiant FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
+    String listmat = "SELECT id_matiere,nom_matiere,date_matiere ,coefficient, id_etudiant FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
     String deltitem = "DELETE FROM matiere WHERE id_matiere = ?";
     String add = "INSERT INTO matiere (nom_matiere,date_matiere,coefficient , id_etudiant) VALUES (?,?,?,"+loggedInUserId+");";
     String update = "UPDATE matiere SET nom_matiere = ?, date_matiere = ? , coefficient = ? WHERE id_matiere = ? AND id_etudiant = \'"+loggedInUserId+"';";
@@ -102,29 +104,6 @@ public class MatieresController implements Initializable {
         afficherMatiere();
     }
    
-    public void afficherMatiere() {
-        try {
-            resultSet = connection.createStatement().executeQuery(listmat);
-            data2.clear();
-            while (resultSet.next()) {
-                data2.add(new Matieres(resultSet.getInt("id_matiere"),
-                resultSet.getString("nom_matiere"),
-                resultSet.getDate("date_matiere"), 
-                resultSet.getInt("id_etudiant")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        col_id_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, Integer>("id_matiere"));
-        col_Nom_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, String>("nom_matiere"));
-        col_Date_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, Date>("date_matiere"));
-        col_Id_Etud.setCellValueFactory(new PropertyValueFactory<Matieres, Integer>("id_etudiant"));
-
-        textlistMat1.setItems(data2);
-    }
-
-  
     public MatieresController() {
         connection = ConnectionUtil.connectdb();
     }
@@ -181,6 +160,33 @@ public class MatieresController implements Initializable {
     };
 
 
+    public void afficherMatiere() {
+        try {
+            resultSet = connection.createStatement().executeQuery(listmat);
+            data2.clear();
+            while (resultSet.next()) {
+                data2.add(new Matieres(resultSet.getInt("id_matiere"),
+                resultSet.getString("nom_matiere"),
+                resultSet.getDate("date_matiere"), 
+                resultSet.getInt("coefficient"), 
+                resultSet.getInt("id_etudiant")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        col_id_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, Integer>("id_matiere"));
+        col_Nom_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, String>("nom_matiere"));
+        col_Date_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, Date>("date_matiere"));
+        col_Coef_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, Integer>("coefficient"));
+        col_Id_Etud.setCellValueFactory(new PropertyValueFactory<Matieres, Integer>("id_etudiant"));
+
+        textlistMat1.setItems(data2);
+    }
+
+  
+
+
     @FXML
     private void addAction(ActionEvent event) throws IOException {
         if (textNomMatiere.getText().isEmpty() || textDateMatiere.getValue() == null || textCoefficient.getText().toString().isEmpty()) {
@@ -188,22 +194,24 @@ public class MatieresController implements Initializable {
             return;
         }
 
-        String Coefficient = textCoefficient.getText().toString();
+        String coefficient = textCoefficient.getText().toString();
         
         try {
             preparedStatement = connection.prepareStatement(add);
             preparedStatement.setString(1, textNomMatiere.getText().toString());
             preparedStatement.setDate(2, Date.valueOf(textDateMatiere.getValue()));
 
-            if (Coefficient.matches("^[0-9]*$")) {
-                preparedStatement.setInt(3, Integer.parseInt(Coefficient));
+            if (coefficient.matches("^[0-9]*$")) {
+                preparedStatement.setInt(3, Integer.parseInt(coefficient));
             }
             else{
                 showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veillez enter un chiffre");
             }
             preparedStatement.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+            "Cette matiere existe déjà");
+            return;
         }
         afficherValeurs();
         afficherMatiere();

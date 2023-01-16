@@ -188,6 +188,7 @@
                         <TableColumn fx:id="col_id_Mat" minWidth="75.0" prefWidth="75.0" text="Id Matiere" />
                         <TableColumn fx:id="col_Nom_Mat" prefWidth="75.0" text="Nom Matiere" />
                         <TableColumn fx:id="col_Date_Mat" prefWidth="75.0" text="Date Matiere" />
+                        <TableColumn fx:id="col_Coef_Mat" prefWidth="75.0" text="Coefficient" />
                         <TableColumn fx:id="col_Id_Etud" prefWidth="75.0" text="Id Etudiant" />
                      </columns>
                   </TableView>
