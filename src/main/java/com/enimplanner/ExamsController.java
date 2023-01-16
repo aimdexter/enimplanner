@@ -38,41 +38,58 @@ public class ExamsController implements Initializable {
 
         @FXML
         private TextField txt_Exams_Recherche;
+
         @FXML
         private Button btnExamens;
+            // Cette variable fait référence à un bouton dans l'interface utilisateur de l'application, lorsque l'utilisateur clique sur le bouton, il exécutera l'action associée à celui-ci.         
         @FXML
         private Button btnTodo;
+            // Cette variable fait référence à un bouton dans l'interface utilisateur de l'application, lorsque l'utilisateur clique sur le bouton, il exécutera l'action associée à celui-ci. 
         @FXML
         private Button btnadd;
+            // Cette variable fait référence à un bouton dans l'interface utilisateur de l'application, lorsque l'utilisateur clique sur le bouton, il exécutera l'action associée à celui-ci. 
         @FXML
         private Button btndel;
+            // Cette variable fait référence à un bouton dans l'interface utilisateur de l'application, lorsque l'utilisateur clique sur le bouton, il exécutera l'action associée à celui-ci. 
         @FXML
         private Button btnrechercher;
+            // Cette variable fait référence à un bouton dans l'interface utilisateur de l'application, lorsque l'utilisateur clique sur le bouton, il exécutera l'action associée à celui-ci. 
         @FXML
         private Button btnupdate;
+            // Cette variable fait référence à un bouton dans l'interface utilisateur de l'application, lorsque l'utilisateur clique sur le bouton, il exécutera l'action associée à celui-ci. 
         @FXML
         private DatePicker textDateExam;
+
         @FXML
         private TextField textExam;
+
         @FXML
         private TextField textNomExam;
+
         @FXML
         private Label textTotalExam;
+
         @FXML
         private Label textUsername;
+
         @FXML
         private TableView<Exams> textlistExam;
+
         @FXML
         private TableColumn<Exams, Date> col_Date_Exam;
+
         @FXML
         private TableColumn<Exams, Integer> col_Id_Etud;
+
         @FXML
         private TableColumn<Exams, String> col_Nom_Exam;
+
         @FXML
         private TableColumn<Exams, Integer> col_id_Exam;
+
         @FXML
         private Button btnExamLogout;
-    
+            // Cette variable fait référence à un bouton dans l'interface utilisateur de l'application, lorsque l'utilisateur clique sur le bouton, il exécutera l'action associée à celui-ci.     
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Statement Statement = null;

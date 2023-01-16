@@ -2,6 +2,8 @@ package com.enimplanner;
 
 import java.sql.Date;
 
+
+//déclare une nouvelle classe en Java nommée "Exams". Cette classe peut être utilisée pour créer des objets qui représentent des examens, et peut contenir des méthodes et des propriétés qui sont liées aux examens.
 public class Exams {
     int id_exam;
     String nom_exam;
