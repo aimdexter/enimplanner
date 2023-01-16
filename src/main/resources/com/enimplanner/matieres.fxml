@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -147,15 +148,6 @@
                         <Image url="@images/recherche.png" />
                      </image>
                   </ImageView>
-                  <TableView fx:id="textlistMat" layoutX="53.0" layoutY="266.0" prefHeight="303.0" prefWidth="713.0" stylesheets="@styles/Home.css">
-                     <styleClass>
-                        <String fx:value="table-view" />
-                        <String fx:value="table-row-cell" />
-                        <String fx:value="column-header" />
-                        <String fx:value="cell" />
-                        <String fx:value="column-header-background" />
-                     </styleClass>
-                  </TableView>
                   <Group layoutX="53.0" layoutY="215.0">
                      <children>
                         <Button fx:id="btnadd" layoutX="537.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="82.0" text="Ajouter" />
@@ -184,6 +176,21 @@
                         <Font size="1.0" />
                      </font>
                   </Button>
+                  <TableView fx:id="textlistMat1" layoutX="53.0" layoutY="258.0" prefHeight="302.0" prefWidth="713.0" stylesheets="@styles/Home.css">
+                     <styleClass>
+                        <String fx:value="table-view" />
+                        <String fx:value="table-row-cell" />
+                        <String fx:value="column-header" />
+                        <String fx:value="cell" />
+                        <String fx:value="column-header-background" />
+                     </styleClass>
+                     <columns>
+                        <TableColumn fx:id="col_id_Mat" minWidth="75.0" prefWidth="75.0" text="Id Matiere" />
+                        <TableColumn fx:id="col_Nom_Mat" prefWidth="75.0" text="Nom Matiere" />
+                        <TableColumn fx:id="col_Date_Mat" prefWidth="75.0" text="Date Matiere" />
+                        <TableColumn fx:id="col_Id_Etud" prefWidth="75.0" text="Id Etudiant" />
+                     </columns>
+                  </TableView>
                </children>
             </Pane>
          </children>

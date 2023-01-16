@@ -28,11 +28,20 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Callback;
+import java.time.ZoneId;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+
+import javafx.application.Application;
+import javafx.collections.ObservableArray;
+import javafx.scene.control.Alert.AlertType;
+
 
 public class MatieresController implements Initializable {
 
@@ -54,7 +63,6 @@ public class MatieresController implements Initializable {
     private DatePicker textDateMatiere;
     @FXML
     private TextField textNomMatiere;
-
     @FXML
     private Button btnMatExamen;
     @FXML
@@ -67,13 +75,25 @@ public class MatieresController implements Initializable {
     private Button userTaches;
 
 
+    @FXML
+    private TableView<Matieres> textlistMat1;
+    @FXML
+    private TableColumn<Matieres, Date> col_Date_Mat;
+    @FXML
+    private TableColumn<Matieres, Integer> col_Id_Etud;
+    @FXML
+    private TableColumn<Matieres, String> col_Nom_Mat;
+    @FXML
+    private TableColumn<Matieres, Integer> col_id_Mat;
+
+
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Statement Statement = null;
     ResultSet resultSet = null;
     ResultSet resultSetMat = null;
-    ObservableList<String> items = FXCollections.observableArrayList();
-    private ObservableList<ObservableList> data;
+    public ObservableList<Matieres> data2 = FXCollections.observableArrayList();
+
     Stage dialogStage = new Stage();
     Scene scene;
 
@@ -88,66 +108,37 @@ public class MatieresController implements Initializable {
 
 
 
-    public MatieresController() {
-        connection = ConnectionUtil.connectdb();
-    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
-        fetColumnList();
-        fetRowList();
         afficherValeurs();
+        afficherMatiere();
     }
-
-    //only fetch columns
-    private void fetColumnList() {
-
+   
+    public void afficherMatiere() {
         try {
             resultSet = connection.createStatement().executeQuery(listmat);
-
-            //SQL FOR SELECTING ALL OF MATIERE
-            for (int i = 0; i < resultSet.getMetaData().getColumnCount(); i++) {
-                //We are using non property style for making dynamic table
-                final int j = i;
-                TableColumn col = new TableColumn(resultSet.getMetaData().getColumnName(i + 1).toUpperCase());
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
-                textlistMat.setEditable(true);
-                textlistMat.getColumns().removeAll(col);
-                textlistMat.getColumns().addAll(col);
-
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error " + e.getMessage());
-
-        }
-    }
-
-    //fetches rows and data from the list
-    private void fetRowList() {
-        data = FXCollections.observableArrayList();
-        try {
-            resultSet = connection.createStatement().executeQuery(listmat);
-
+            data2.clear();
             while (resultSet.next()) {
-                //Iterate Row
-                ObservableList row = FXCollections.observableArrayList();
-                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-                    //Iterate Column
-                    row.add(resultSet.getString(i));
-                }
-                data.add(row);
-
+                data2.add(new Matieres(resultSet.getInt("id_matiere"),
+                resultSet.getString("nom_matiere"),
+                resultSet.getDate("date_matiere"), 
+                resultSet.getInt("id_etudiant")));
             }
-            textlistMat.setItems(data);
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        col_id_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, Integer>("id_matiere"));
+        col_Nom_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, String>("nom_matiere"));
+        col_Date_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, Date>("date_matiere"));
+        col_Id_Etud.setCellValueFactory(new PropertyValueFactory<Matieres, Integer>("id_etudiant"));
+
+        textlistMat1.setItems(data2);
+    }
+
+    public MatieresController() {
+        connection = ConnectionUtil.connectdb();
     }
 
     //Delete rows and data from the list by id_matiere
@@ -170,7 +161,7 @@ public class MatieresController implements Initializable {
             e.printStackTrace();
         }
         afficherValeurs();
-        fetRowList();
+        afficherMatiere();
     }
 
     //Afficher les vdonnees de l utilisteur
@@ -227,7 +218,7 @@ public class MatieresController implements Initializable {
             e.printStackTrace();
         }
         afficherValeurs();
-        fetRowList();
+        afficherMatiere();
     };
 
     @FXML
@@ -296,7 +287,7 @@ public class MatieresController implements Initializable {
             e.printStackTrace();
         }
         afficherValeurs();
-        fetRowList();
+        afficherMatiere();
     };
     
     @FXML
@@ -309,7 +300,6 @@ public class MatieresController implements Initializable {
         Scene scene = new Scene(root);
         dialogStage.setScene(scene);
         dialogStage.show();
-
     }
     
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
