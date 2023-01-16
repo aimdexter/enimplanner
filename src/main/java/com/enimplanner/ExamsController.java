@@ -20,6 +20,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -35,7 +37,7 @@ import javafx.stage.Window;
 public class ExamsController implements Initializable {
 
         @FXML
-        private TextField Recherche;
+        private TextField txt_Exams_Recherche;
         @FXML
         private Button btnExamens;
         @FXML
@@ -120,6 +122,36 @@ public class ExamsController implements Initializable {
         col_Id_Etud.setCellValueFactory(new PropertyValueFactory<Exams, Integer>("id_exam"));
 
         textlistExam.setItems(dataExams);
+
+        
+        FilteredList<Exams> filteredData = new FilteredList<>(dataExams, b -> true);
+
+        		// 2. Set the filter Predicate whenever the filter changes.
+		txt_Exams_Recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(exam -> {
+				// If filter text is empty, display all matiere.
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				// Compare first name of every matiere with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (exam.getNom_exam().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				}return false; // Does not match.
+			});
+		});
+        // 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Exams> sortedData = new SortedList<>(filteredData);
+	
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(textlistExam.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		textlistExam.setItems(sortedData);
+
+
     }
 
 

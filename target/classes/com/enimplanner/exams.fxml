@@ -128,7 +128,7 @@
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOverview" prefHeight="576.0" prefWidth="800.0" style="-fx-background-color: #fff;">
                <children>
-                  <TextField fx:id="Recherche" layoutX="53.0" layoutY="108.0" prefHeight="27.0" prefWidth="183.0" promptText="Recherche" style="-fx-background-color: #fff; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
+                  <TextField fx:id="txt_Exams_Recherche" layoutX="53.0" layoutY="108.0" prefHeight="27.0" prefWidth="183.0" promptText="Recherche" style="-fx-background-color: #fff; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;">
                      <stylesheets>
                         <URL value="@styles/Exams.css" />
                         <URL value="@styles/Exams.css" />

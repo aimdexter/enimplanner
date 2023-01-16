@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,6 +49,10 @@ public class MatieresController implements Initializable {
     @FXML
     private Button btnadd;
     @FXML
+    private Button btnrechercher;
+    @FXML
+    private TextField txtRecherche;
+    @FXML
     private DatePicker textDateMatiere;
     @FXML
     private TextField textNomMatiere;
@@ -80,6 +86,7 @@ public class MatieresController implements Initializable {
     PreparedStatement preparedStatement = null;
     Statement Statement = null;
     ResultSet resultSet = null;
+    ResultSet resultSetSearch = null;
     ResultSet resultSetMat = null;
     public ObservableList<Matieres> data2 = FXCollections.observableArrayList();
 
@@ -89,7 +96,7 @@ public class MatieresController implements Initializable {
 
     String sql = "SELECT * FROM etudiant WHERE id_etudiant = \'"+loggedInUserId+"';";
     String countMatiere = "SELECT COUNT(*) FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
-    String listmat = "SELECT id_matiere,nom_matiere,date_matiere ,coefficient, id_etudiant FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
+    String listmat = "SELECT * FROM matiere where id_etudiant = \'"+loggedInUserId+"';";
     String deltitem = "DELETE FROM matiere WHERE id_matiere = ?";
     String add = "INSERT INTO matiere (nom_matiere,date_matiere,coefficient , id_etudiant) VALUES (?,?,?,"+loggedInUserId+");";
     String update = "UPDATE matiere SET nom_matiere = ?, date_matiere = ? , coefficient = ? WHERE id_matiere = ? AND id_etudiant = \'"+loggedInUserId+"';";
@@ -180,12 +187,39 @@ public class MatieresController implements Initializable {
         col_Date_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, Date>("date_matiere"));
         col_Coef_Mat.setCellValueFactory(new PropertyValueFactory<Matieres, Integer>("coefficient"));
         col_Id_Etud.setCellValueFactory(new PropertyValueFactory<Matieres, Integer>("id_etudiant"));
-
         textlistMat1.setItems(data2);
+
+        FilteredList<Matieres> filteredData = new FilteredList<>(data2, b -> true);
+
+        		// 2. Set the filter Predicate whenever the filter changes.
+		txtRecherche.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(matiere -> {
+				// If filter text is empty, display all matiere.
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				// Compare first name of every matiere with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (matiere.getNom_matiere().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				}return false; // Does not match.
+			});
+		});
+        // 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Matieres> sortedData = new SortedList<>(filteredData);
+	
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(textlistMat1.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		textlistMat1.setItems(sortedData);
     }
 
-  
-
+    @FXML
+    void btnSearch(ActionEvent event)  {        
+    }
 
     @FXML
     private void addAction(ActionEvent event) throws IOException {
@@ -217,10 +251,6 @@ public class MatieresController implements Initializable {
         afficherMatiere();
     };
 
-    @FXML
-    void btnSearch(ActionEvent event) {
-    }
-    
     @FXML
     void switchMatLogout(ActionEvent event) throws IOException {
         Node source = (Node) event.getSource();

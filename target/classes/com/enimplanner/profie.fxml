@@ -187,7 +187,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Label>
-                  <Label alignment="CENTER" layoutX="7.0" layoutY="70.0" text="Prénom :">
+                  <Label alignment="CENTER" layoutX="7.0" layoutY="70.0" text="Mot de passe :">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -202,20 +202,12 @@
                   <Insets bottom="200.0" left="80.0" />
                </StackPane.margin>
             </Group>
-            <Button fx:id="btnmodify" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #0C39FF;" text="Mettre à jour" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
+            <Button fx:id="btnmodify" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="634.0" style="-fx-background-color: #0C39FF;" text="Mettre à jour" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
                <font>
                   <Font size="14.0" />
                </font>
                <StackPane.margin>
                   <Insets bottom="150.0" />
-               </StackPane.margin>
-            </Button>
-            <Button fx:id="btnmodify1" alignment="CENTER" mnemonicParsing="false" prefHeight="29.0" prefWidth="94.0" style="-fx-background-color: #0C39FF;" text="Supprimer" textFill="WHITE" StackPane.alignment="BOTTOM_CENTER">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <StackPane.margin>
-                  <Insets bottom="150.0" left="250.0" />
                </StackPane.margin>
             </Button>
          </children>
