@@ -88,19 +88,15 @@ public class ProfileController implements Initializable {
                 String prenom = resultSet.getString("prenom").toUpperCase();
                 String Username = nom +" "+ prenom ;
                 textUsername.setText(Username);
-                usernom.setText(nom);
-                userprenom.setText(prenom);
-                useroption.setText(resultSet.getString("niveau").toUpperCase());
                 useremail.setText(resultSet.getString("email").toUpperCase());
-                usermdp.setText(resultSet.getString("password").toUpperCase());
 
                 textUsername.setText(Username);
 
                 txtnom.setText(nom);
                 txtprenom.setText(prenom);
-                txtniveau.setText(resultSet.getString("niveau").toUpperCase());
-                useremail.setText(resultSet.getString("email").toUpperCase());
-                txtpassword.setText(resultSet.getString("password").toUpperCase());
+                txtniveau.setText(resultSet.getString("niveau"));
+                useremail.setText(resultSet.getString("email"));
+                txtpassword.setText(resultSet.getString("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -165,7 +165,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="useremail" layoutX="72.0" layoutY="36.0" prefHeight="17.0" prefWidth="423.0" text="DEFAULT">
+                  <Label fx:id="useremail" layoutX="160.0" layoutY="36.0" prefHeight="17.0" prefWidth="423.0" text="DEFAULT">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
