@@ -20,6 +20,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -120,6 +122,34 @@ public class TodosController implements Initializable{
         col_Id_Etudiant.setCellValueFactory(new PropertyValueFactory<Todos, Integer>("id_etudiant"));
 
         textlistTodos.setItems(data);
+
+        FilteredList<Todos> filteredData = new FilteredList<>(data, b -> true);
+
+                // 2. Set the filter Predicate whenever the filter changes.
+        Recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(exam -> {
+                // If filter text is empty, display all matiere.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                // Compare first name of every matiere with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+                
+                if (exam.getNom_todo().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+                    return true; // Filter matches first name.
+                }return false; // Does not match.
+            });
+        });
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<Todos> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // 	  Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(textlistTodos.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        textlistTodos.setItems(sortedData);
+
     }
 
 
