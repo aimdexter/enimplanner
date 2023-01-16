@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -145,13 +146,19 @@
                         <Image url="@images/recherche.png" />
                      </image>
                   </ImageView>
-                  <TableView fx:id="textlistExam" layoutX="53.0" layoutY="248.0" prefHeight="321.0" prefWidth="713.0" />
+                  <TableView fx:id="textlistExam" layoutX="53.0" layoutY="248.0" prefHeight="321.0" prefWidth="713.0">
+                     <columns>
+                        <TableColumn fx:id="col_id_Exam" minWidth="75.0" prefWidth="75.0" text="Id Examen" />
+                        <TableColumn fx:id="col_Nom_Exam" prefWidth="75.0" text="Nom Examen" />
+                        <TableColumn fx:id="col_Date_Exam" prefWidth="75.0" text="Date Examen" />
+                        <TableColumn fx:id="col_Id_Etud" prefWidth="75.0" text="Id Etudiant" />
+                     </columns></TableView>
                   <Group layoutX="53.0" layoutY="215.0">
                      <children>
-                        <Button fx:id="btnadd" layoutX="535.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="82.0" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Ajouter" />
+                        <Button fx:id="btnadd" layoutX="535.0" mnemonicParsing="false" onAction="#addAction" prefHeight="27.0" prefWidth="82.0" styleClass="button2" text="Ajouter" />
                         <TextField fx:id="textNomExam" layoutY="2.0" prefHeight="26.0" prefWidth="262.0" promptText="Nom de la Examen" />
                         <DatePicker fx:id="textDateExam" layoutX="283.0" layoutY="2.0" prefHeight="25.0" prefWidth="238.0" promptText="Date de l'examen" />
-                        <Button fx:id="btnupdate" layoutX="629.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: green;" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Modifier" />
+                        <Button fx:id="btnupdate" layoutX="629.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: green;" styleClass="button2" text="Modifier" />
                      </children>
                   </Group>
                   <Label layoutX="53.0" layoutY="157.0" prefHeight="46.0" prefWidth="183.0" text="Total Examens :">
@@ -164,7 +171,7 @@
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnrechercher" layoutX="251.0" layoutY="109.0" mnemonicParsing="false" onAction="#btnSearch" prefHeight="27.0" prefWidth="82.0" styleClass="button2" stylesheets="@styles/loginlogout.css" text="Rechercher" />
+                  <Button fx:id="btnrechercher" layoutX="251.0" layoutY="109.0" mnemonicParsing="false" onAction="#btnSearch" prefHeight="27.0" prefWidth="82.0" styleClass="button2" text="Rechercher" />
                   <Group layoutX="609.0" layoutY="75.0" style="-fx-background-color: blue;" />
                   <Group layoutX="594.0" layoutY="60.0">
                      <children>
