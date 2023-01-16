@@ -59,7 +59,7 @@ public class MatieresController implements Initializable {
     @FXML
     private Button btnMatExamen;
     @FXML
-    private Button btnMatProfile;
+    private Button Profile;
     @FXML
     private Button btnMatTodo;
     @FXML
@@ -264,7 +264,15 @@ public class MatieresController implements Initializable {
     }
 
     @FXML
-    void switchMatProfile(ActionEvent event) throws IOException {
+    void Profile(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
     }
 
     @FXML
