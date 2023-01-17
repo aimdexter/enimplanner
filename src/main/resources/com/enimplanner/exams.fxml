@@ -39,7 +39,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="Profile" textFill="#e7e5e5">
+            <Button fx:id="profile" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#goprofile" prefHeight="42.0" prefWidth="259.0" stylesheets="@styles/Exams.css" text="Profile" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -152,7 +152,6 @@
                         <TableColumn fx:id="col_id_Exam" minWidth="75.0" prefWidth="75.0" text="Id Examen" />
                         <TableColumn fx:id="col_Nom_Exam" prefWidth="75.0" text="Nom Examen" />
                         <TableColumn fx:id="col_Date_Exam" prefWidth="75.0" text="Date Examen" />
-                        <TableColumn fx:id="col_Id_Etud" prefWidth="75.0" text="Id Etudiant" />
                      </columns>
                      <styleClass>
                         <String fx:value="column-header" />

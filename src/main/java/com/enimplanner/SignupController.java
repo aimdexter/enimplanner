@@ -59,7 +59,8 @@ public class SignupController implements Initializable{
         
         String sql = "INSERT INTO etudiant (nom, prenom, niveau, email, password) VALUES (?, ?, ? , ?, ?)";
 
-        if (textNom.getText().isEmpty() || textPrenom.getText().isEmpty() || textOption.getText().isEmpty() || textOption.getText().isEmpty() || textEmail.getText().isEmpty() || textPassword.getText().isEmpty()) {
+        if (textNom.getText().isEmpty() || textPrenom.getText().isEmpty() || textOption.getText().isEmpty() 
+        || textOption.getText().isEmpty() || textEmail.getText().isEmpty() || textPassword.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
             "Veuillez renseigner tous les champs");
             return;

@@ -40,6 +40,8 @@ public class ExamsController implements Initializable {
         private TextField txt_Exams_Recherche;
 
         @FXML
+        private Button profile;
+        @FXML
         private Button btnExamens;
             // Cette variable fait référence à un bouton dans l'interface utilisateur de l'application, lorsque l'utilisateur clique sur le bouton, il exécutera l'action associée à celui-ci.         
         @FXML
@@ -162,8 +164,7 @@ public class ExamsController implements Initializable {
                 //Ensuite, la méthode définit les valeurs des propriétés "col_id_Exam", "col_Nom_Exam", "col_Date_Exam" et "col_Id_Etud" pour les cellules de la table "textlistExam", en utilisant les propriétés "id_exam", "nom_exam", "date_exam" et "id_exam" de la classe Exams respectivement.
                 dataExams.add(new Exams(resultSet.getInt("id_exam"),
                 resultSet.getString("nom_exam"),
-                resultSet.getDate("date_exam"), 
-                resultSet.getInt("id_exam")));
+                resultSet.getDate("date_exam")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -181,7 +182,7 @@ public class ExamsController implements Initializable {
         col_Date_Exam.setCellValueFactory(new PropertyValueFactory<Exams, Date>("date_exam"));
 
         //cette ligne de code définit la propriété "col_Id_Etud" pour utiliser la propriété "id_exam" de la classe "Exams" pour remplir les cellules de cette colonne.
-        col_Id_Etud.setCellValueFactory(new PropertyValueFactory<Exams, Integer>("id_exam"));
+        // col_Id_Etud.setCellValueFactory(new PropertyValueFactory<Exams, Integer>("id_exam"));
 
         //Enfin, "textlistExam.setItems(dataExams);" est utilisé pour assigner la collection "dataExams" à la table "textlistExam" pour afficher les examen dans la table.
         textlistExam.setItems(dataExams);
@@ -338,6 +339,17 @@ public class ExamsController implements Initializable {
         dialogStage.show();
     }
 
+    @FXML
+    void goprofile(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("profile.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
 
     @FXML
     void switchExamLogout(ActionEvent event) throws IOException {

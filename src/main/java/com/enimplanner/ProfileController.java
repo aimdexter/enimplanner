@@ -2,6 +2,7 @@ package com.enimplanner;
 
 import static com.enimplanner.LoginController.loggedInUserId;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,10 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -58,6 +62,19 @@ public class ProfileController implements Initializable {
     @FXML
     private Label userprenom;
     //La variable "connection" est de type "Connection" et est initialisée à "null", ce qui signifie qu'elle ne contient aucune valeur pour l'instant. Cette variable sera utilisée pour stocker une connexion à une base de données.                         
+    
+    @FXML
+    private Button exam;
+
+    @FXML
+    private Button logout;
+
+    @FXML
+    private Button mat;
+
+    @FXML
+    private Button todo;
+    
     Connection connection = null;
 
     //La variable "preparedStatement" est de type "PreparedStatement" et est également initialisée à "null". Cette variable sera utilisée pour stocker une instruction SQL préparée, qui peut être utilisée pour exécuter des requêtes à une base de données.
@@ -151,5 +168,53 @@ public class ProfileController implements Initializable {
         }
         //Enfin, la méthode appelle la méthode "afficherValeurs()" pour mettre à jour les informations affichées dans la vue.
         afficherValeurs();
+    }
+
+    @FXML
+    void goexam(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("exams.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
+    @FXML
+    void gologout(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
+    @FXML
+    void gomatiere(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("matieres.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
+    }
+
+    @FXML
+    void gotodo(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("todos.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
     }
 }

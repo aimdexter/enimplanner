@@ -14,11 +14,10 @@ public class Exams {
         super();
     }
 
-    public Exams(int id_exam, String nom_exam, Date date_exam, int id_etudiant) {
+    public Exams(int id_exam, String nom_exam, Date date_exam) {
         this.id_exam = id_exam;
         this.nom_exam = nom_exam;
         this.date_exam = date_exam;
-        this.id_etudiant = id_etudiant;
     }
     public int getId_exam() {
         return id_exam;
