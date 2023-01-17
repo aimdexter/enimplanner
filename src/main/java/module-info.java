@@ -6,5 +6,4 @@ module com.enimplanner {
     opens com.enimplanner to javafx.fxml;
     exports com.enimplanner;
     requires transitive java.sql;
-
 }

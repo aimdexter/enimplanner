@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.Text;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -26,6 +27,9 @@ public class LoginController implements Initializable {
     
     @FXML
     private PasswordField textPassword;
+
+    @FXML
+    private Text textUsername;
     
     Stage dialogStage = new Stage();
     Scene scene;
@@ -33,6 +37,7 @@ public class LoginController implements Initializable {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+    public static String loggedInUserId;
 
     public LoginController() {
         connection = ConnectionUtil.connectdb();
@@ -53,6 +58,7 @@ public class LoginController implements Initializable {
         if(!resultSet.next()){
             infoBox("Enter Correct Email and Password", "Failed", null);
         }else{
+            loggedInUserId =  resultSet.getString("id_etudiant");
             Node source = (Node) event.getSource();
             dialogStage = (Stage) source.getScene().getWindow();
             dialogStage.close();
@@ -64,7 +70,7 @@ public class LoginController implements Initializable {
         }
          
         }catch(Exception e){
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

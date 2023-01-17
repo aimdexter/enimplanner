@@ -29,13 +29,27 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void Todos() throws IOException {
-        App.setRoot("todos");
+    private void Todos(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("todos.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
     }
 
     @FXML
-    private void Exams() throws IOException {
-        App.setRoot("exams");
+    private void Exams(ActionEvent event) throws IOException {
+        Node source = (Node) event.getSource();
+        Stage dialogStage = (Stage) source.getScene().getWindow();
+        dialogStage.close();
+        
+        Parent root = FXMLLoader.load(getClass().getResource("exams.fxml"));
+        Scene scene = new Scene(root);
+        dialogStage.setScene(scene);
+        dialogStage.show();
     }
 
     @Override

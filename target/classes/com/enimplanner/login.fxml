@@ -36,17 +36,8 @@
          <children>
             <TextField fx:id="textEmail" layoutX="7.0" prefHeight="34.0" prefWidth="275.0" promptText="Email" stylesheets="@styles/loginlogout.css" />
             <PasswordField fx:id="textPassword" layoutX="7.0" layoutY="61.0" prefHeight="34.0" prefWidth="275.0" promptText="Mot de passe" stylesheets="@styles/loginlogout.css" />
-            <Button fx:id="seconnecter" layoutX="7.0" layoutY="125.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="34.0" prefWidth="275.0" stylesheets="@styles/loginlogout.css" text="Se connnecter" />
-            <Button fx:id="signup" layoutX="8.0" layoutY="215.0" mnemonicParsing="false" onAction="#Signup" prefHeight="34.0" prefWidth="275.0" style="-fx-background-color: #0C39FF;" text="S'inscrire" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/signup.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Separator layoutX="8.0" layoutY="190.0" prefHeight="7.0" prefWidth="275.0" stylesheets="@styles/loginlogout.css" />
+            <Button fx:id="seconnecter" layoutX="7.0" layoutY="125.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="34.0" prefWidth="275.0" styleClass="btn2" stylesheets="@styles/style.css" text="Se connnecter" />
+            <Separator layoutX="8.0" layoutY="190.0" prefHeight="7.0" prefWidth="275.0" />
             <Label alignment="CENTER" layoutX="126.0" layoutY="179.0" prefHeight="23.0" prefWidth="31.0" style="-fx-background-color: #fff;" text="Ou" textFill="#5b5a5a">
                <font>
                   <Font name="Segoe UI" size="12.0" />
@@ -57,6 +48,15 @@
                   <Font name="Segoe UI" size="10.0" />
                </font>
             </Label>
+            <Button fx:id="signup" layoutX="7.0" layoutY="221.0" mnemonicParsing="false" onAction="#Signup" prefHeight="34.0" prefWidth="275.0" styleClass="btn2" stylesheets="@styles/style.css" text="S'inscrire">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/signup.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="394.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">

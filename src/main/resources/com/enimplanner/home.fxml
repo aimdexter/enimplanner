@@ -58,7 +58,7 @@
          </children>
       </Group>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0c39ff" height="170.0" layoutY="-1.0" stroke="#0c39ff" strokeType="INSIDE" width="854.0" />
-      <Text fill="WHITE" layoutX="230.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenu dans Enim-planner :)" textAlignment="CENTER">
+      <Text fill="WHITE" layoutX="231.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenu dans Enim-planner :)" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI" size="42.0" />
          </font>
@@ -68,5 +68,10 @@
             <Image url="@images/mines-rabat-logo.png" />
          </image>
       </ImageView>
+      <Text fx:id="textUsername" fill="WHITE" layoutX="231.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="596.8000030517578">
+         <font>
+            <Font name="Segoe UI" size="42.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
