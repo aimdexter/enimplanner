@@ -141,7 +141,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="2.0" layoutY="105.0" text="Niveau :">
+                  <Label alignment="CENTER" layoutX="2.0" layoutY="105.0" text="Option :">
                      <font>
                         <Font size="13.0" />
                      </font>

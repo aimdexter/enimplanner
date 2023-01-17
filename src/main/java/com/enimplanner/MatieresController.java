@@ -240,6 +240,7 @@ public class MatieresController implements Initializable {
             }
             else{
                 showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veillez enter un chiffre");
+                return;
             }
             preparedStatement.executeUpdate();
         } catch (Exception e) {

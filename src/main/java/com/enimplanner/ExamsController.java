@@ -306,8 +306,6 @@ public class ExamsController implements Initializable {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veuillez renseigner tous les champs");
             return;
         }
-       
-        
         try {
             preparedStatement = connection.prepareStatement(update);
             preparedStatement.setString(1, textNomExam.getText().toString());
