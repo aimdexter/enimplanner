@@ -213,17 +213,16 @@ public class TodosController implements Initializable{
         String id_mexam = textExam.getText().toString();
         try {
             preparedStatement = connection.prepareStatement(deltitem);
-            if (id_mexam.matches("^[0-9]*$") || id_mexam == "") {
+            if (id_mexam.matches("^[0-9]*$")) {
                 preparedStatement.setInt(1, Integer.parseInt(textExam.getText()));
             }
             else{
                 showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Veillez enter un chiffre");
+                return;
             }
-
             preparedStatement.executeUpdate();
-            
         } catch (Exception e) {
-            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!","Le champs id Tache ne peut pas etre vide !!");
         }
         afficherValeurs();
         afficherExamen();
